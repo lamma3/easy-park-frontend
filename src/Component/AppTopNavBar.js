@@ -4,7 +4,7 @@ import { NavBar, Icon } from 'antd-mobile';
 class AppTopNavBar extends Component {
     render() {
         return (
-            <div className = "Nav-bar" style={{position: 'absolute', top: 0, flex: 1, alignSelf: 'stretch', right: 0, left: 0}}>
+            <div className = "Nav-bar" >    
                 <NavBar
                     mode="light"
                     icon={<Icon type="left" />}

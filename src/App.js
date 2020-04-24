@@ -1,6 +1,6 @@
 import React from 'react';
-import './App.css';
-import AppTopNavBar from './Component/AppTopNavBar';
+import AppTopNavBar from './component/AppTopNavBar';
+import ParkingLotList from './component/ParkingLotList';
 
 
 function App() {
@@ -8,6 +8,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <AppTopNavBar />
+        <ParkingLotList />
       </header>
     </div>
   );
