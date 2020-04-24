@@ -1,30 +1,25 @@
 import React, { Component } from 'react';
 import { List, Badge } from 'antd-mobile';
+import { DUMMY_PARKING_LOT_LIST } from '../constant/constants';
+import ParkingLotBadge from './ui/ParkingLotBadge';
+
 
 const Item = List.Item;
 
 class ParkingLotList extends Component {
     render() {
+        let parkingLotList = DUMMY_PARKING_LOT_LIST;
         return (
             <div>
                 <List className="parking-lot-list">
-                    <Item
-                        extra={<Badge size='large' text="20" style={{ marginLeft: 12, padding: '0 3px', backgroundColor: '#21b68a', borderRadius: 2 }} />}
-                        onClick={() => { }}>
-                        科學園3期停車場
+                {parkingLotList.map((item, index) =>
+                    <Item key={index} onClick={() => { }}
+                    extra={<ParkingLotBadge number={item.avaliableSpace}/>}>
+                        {item.parkingLotName}
                     </Item>
-                    <Item
-                        extra={<Badge size='large' text="20" style={{ marginLeft: 12, padding: '0 3px', backgroundColor: '#21b68a', borderRadius: 2 }} />}
-                        onClick={() => { }}>
-                        科學園2期停車場
-                    </Item>
-                    <Item
-                        extra={<Badge size='large' text="0" style={{ marginLeft: 12, padding: '0 3px', backgroundColor: '#EC7063', borderRadius: 2 }} />}
-                        onClick={() => { }}>
-                        科學園3W停車場
-                    </Item>
+                )}
                 </List>
-            </div>
+            </div >
         );
     }
 }
