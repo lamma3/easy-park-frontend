@@ -1,3 +1,7 @@
+# Easy Park Frontend
+
+[![Build Status](https://travis-ci.com/lamma3/easy-park-frontend.svg?branch=master)](https://travis-ci.com/lamma3/easy-park-frontend)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
