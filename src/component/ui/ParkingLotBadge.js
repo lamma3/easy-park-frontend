@@ -8,12 +8,12 @@ class ParkingLotBadge extends Component {
         const avaliableNumber = this.props.number;
         if (avaliableNumber === 0) {
             return (
-                <div className='Parking-lot-badge' style={{backgroundColor: '#EC7063'}}>
+                <div className='Parking-lot-badge' style={{ backgroundColor: '#EC7063' }}>
                     {this.props.number}
                 </div>
             );
         } else return (
-            <div className='Parking-lot-badge' style={{backgroundColor: '#21b68a'}}>
+            <div className='Parking-lot-badge' style={{ backgroundColor: '#21b68a' }}>
                 {this.props.number}
             </div>
         );
