@@ -13,10 +13,20 @@
     
 }
 
+.Booking-summary {
+  color: #1e4072;
+}
+
 .Info-content{
   padding-top: 7em;
   text-align: center;
 
+}
+
+.Info-display-alert {
+  color: #e20f00;
+  font-weight: bold;
+  font-size: 20px;
 }
 
 .detail{

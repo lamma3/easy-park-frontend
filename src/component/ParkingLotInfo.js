@@ -14,6 +14,7 @@ class ParkingLotInfo extends Component {
         super(props, context);
 
         this.goBack = this.goBack.bind(this);
+        this.goBookingPage = this.goBookingPage.bind(this);
 
         this.state = {
             isLoaded: false,
@@ -34,6 +35,10 @@ class ParkingLotInfo extends Component {
         this.props.history.goBack();
     }
 
+    goBookingPage() {
+        this.props.history.push(`/booking/${this.props.match.params.id}`);
+    }
+    
     render() {
         if (!this.state.isLoaded) {
             return <Loading />;
@@ -49,7 +54,7 @@ class ParkingLotInfo extends Component {
                     <div className='Info-button'>
                         <Space size='small'>
                             <Button type="primary" onClick={this.goBack}>Back</Button>
-                            <Button type="primary">Reserve a Space</Button>
+                            <Button type="primary" onClick={this.goBookingPage}>Reserve a Space</Button>
                         </Space>
                     </div>
                 </div>
