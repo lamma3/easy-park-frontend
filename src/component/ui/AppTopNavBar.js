@@ -11,8 +11,8 @@ class AppTopNavBar extends Component {
                     onLeftClick={() => console.log('onLeftClick')}
                     rightContent={[
                         <Icon key="1" type="ellipsis" />,
-                    ]}
-                >EsayPark</NavBar>
+                    ]}>
+                    EasyPark</NavBar>
             </div>
         );
     }

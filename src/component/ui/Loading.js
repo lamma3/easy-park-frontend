@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import { Spin } from 'antd';
 
 class Loading extends Component {
     render() {
         return (
-            <div className='Loading'>
-                <Spin tip="Loading..." />
-            </div>
+                <div class="spinner">
+                    <div class="spinner-cube1"></div>
+                    <div class="spinner-cube2"></div>
+                    <div class="loading-text">Loading...</div>
+                </div>
+
         );
     }
 }

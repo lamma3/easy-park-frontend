@@ -34,7 +34,7 @@ class ParkingLotList extends Component {
             return <Loading />; 
         }else return (
             <div>
-                <List className="parking-lot-list">
+                <List className="Parking-lot-list">
                     {this.state.list.map((item, index) =>
                         <Item multipleLine key={index} onClick={() => {this.props.history.push(`/infos/${item.id}`);}}>
                             {item.name}
