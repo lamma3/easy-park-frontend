@@ -1,6 +1,7 @@
 import React from 'react';
+import './css/ui.css';
 import { Route } from 'react-router-dom';
-import AppTopNavBar from './component/AppTopNavBar';
+import AppTopNavBar from './component/ui/AppTopNavBar';
 import ParkingLotList from './component/ParkingLotList';
 import ParkingLotInfo from './component/ParkingLotInfo';
 
