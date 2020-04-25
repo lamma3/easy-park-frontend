@@ -13,11 +13,56 @@
     
 }
 
+.Info-content{
+  padding-top: 7em;
+  text-align: center;
+
+}
+
+.detail{
+  font-size: large;
+}
+
+.Info-button{
+  padding-top: 2em;
+}
+
 .Parking-lot-list{
     margin: 10px;
 }
 
-.spinner {
+.Search-box{
+  opacity: 0.8;
+  width: 95%;
+  height: 2em;
+  text-align: center;
+  margin: 2.5%;
+  border: none;
+  border-radius: 10px;
+}
+
+.Filter-box{
+  margin-left: 2.5%;
+  padding: 20px;
+  display: inline-block;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 10px;
+  background-color: #FFFFFF;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.Display-card{
+  padding: 20px;
+  display: inline-block;
+  width: 80%;
+  box-sizing: border-box;
+  border-radius: 10px;
+  background-color: #FFFFFF;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+ .spinner {
     margin: 50% auto;
     width: 40px;
     height: 40px;

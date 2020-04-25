@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../css/ParkingLotInfo.css';
+import '../css/ui.css';
 import { Typography, Button, Space } from 'antd';
 import ParkingLotApi from '../apis/ParkingLotApi';
 import { CarFilled } from '@ant-design/icons';
@@ -39,11 +39,11 @@ class ParkingLotInfo extends Component {
             return <Loading />;
         } else return (
             <div className='Info-content'>
-                <div className='Info-display'>
+                <div className='Display-card'>
                     <Title level={3}>{this.state.list.name}</Title>
                     <Text className='detail'>Address: {this.state.list.address}</Text><br />
                     <Text className='detail'>Hourly Rate: ${this.state.list.hourlyRate}</Text><br />
-                    <Text className='detail'>Remaining Space:</Text> <CarFilled /> {this.state.list.remainCapacity}<br />
+                    <Text className='detail'>Remaining Space: <CarFilled /> {this.state.list.remainCapacity}</Text><br />
                     <Text className='detail'>Rating: {this.state.list.rate}/5</Text><br />
 
                     <div className='Info-button'>
