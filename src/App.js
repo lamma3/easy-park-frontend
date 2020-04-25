@@ -1,17 +1,18 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
 import AppTopNavBar from './component/AppTopNavBar';
 import ParkingLotList from './component/ParkingLotList';
 import ParkingLotInfo from './component/ParkingLotInfo';
 
-
 function App() {
+  
   return (
     <div className="App">
-      <header className="App-header">
         <AppTopNavBar />
-        {/* <ParkingLotList /> */}
-        <ParkingLotInfo />
-      </header>
+        <div>
+          <Route path="/search"  component={ParkingLotList} />
+          <Route path="/infos/:id" component={ParkingLotInfo} />
+        </div>
     </div>
   );
 }
