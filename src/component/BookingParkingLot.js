@@ -18,12 +18,14 @@ class BookingParkingLot extends Component {
     }
 
     componentDidMount() {
-        ParkingLotApi.getParkingLotById(1).then((response) => {
+        ParkingLotApi.getParkingLotById(this.props.match.params.id).then((response) => {
             let apiData = response.data;
             this.setState({
                 isLoaded: true,
                 list: apiData
             })
+            
+            console.log(this.state);
         })
     }
 
@@ -31,11 +33,13 @@ class BookingParkingLot extends Component {
         this.props.history.push(`/result/${this.props.match.params.id}`);
     }
     render() {
-        return(
+        if (!this.state.isLoaded) {
+            return <Loading />;
+        } else return (
             <div className='Info-content'>
-                    <Title level={2}>Parking Lot 1</Title>
+                    <Title level={2}>{this.state.list.name}</Title>
                     <Text className='Info-display-alert'>Remaining Space:</Text><br />
-                    <Text className='Info-display-alert'>30</Text> <br />
+                    <Text className='Info-display-alert'>{this.state.list.remainCapacity}</Text> <br />
 
                     <div className='Info-button'>
                         <Space size='small'>
@@ -44,7 +48,7 @@ class BookingParkingLot extends Component {
                     </div>
 
             </div>
-        )}
+        );}
 }
 
 export default withRouter(BookingParkingLot);

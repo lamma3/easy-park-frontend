@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "../css/ui.css";
 import { Typography, Button, Space } from "antd";
+import ParkingLotApi from '../apis/ParkingLotApi';
 import Loading from "./ui/Loading";
 import { withRouter } from "react-router-dom";
 
@@ -21,6 +22,14 @@ class BookingResult extends Component {
   // Added random boolean for fake result
   componentDidMount() {
     window.addEventListener("load", this.onRandomBookingResult);
+
+    ParkingLotApi.getParkingLotById(this.props.match.params.id).then((response) => {
+      let apiData = response.data;
+      this.setState({
+          isLoaded: true,
+          list: apiData
+      })
+  })
   }
 
   onRandomBookingResult() {
@@ -33,17 +42,17 @@ class BookingResult extends Component {
   }
 
   render() {
-    if (!this.state.random_boolean) {
+    if (!this.state.isLoaded) {
+      return <Loading />;
+  } else if (!this.state.random_boolean) {
       return (
         <div className="Info-content">
           <Title level={2}>Successfully Booked</Title>
-          <Title level={3}>Parking Lot 1</Title>
+          <Title level={3}>{this.state.list.name}</Title>
 
           <div className="Info-button">
             <Space size="small">
-              <Button type="primary" onClick={this.goBack}>
-                OK
-              </Button>
+              <Button type="primary" onClick={this.goBack}>OK</Button>
             </Space>
           </div>
         </div>
@@ -52,7 +61,7 @@ class BookingResult extends Component {
       return (
         <div className="Info-content">
           <Title level={2}>Failed to Book</Title>
-          <Title level={3}>Parking Lot 1</Title> <br />
+          <Title level={3}>{this.state.list.name}</Title> <br />
           <Text className="Info-display-alert">Please try another parking lot</Text><br />
           
           <div className="Info-button">
