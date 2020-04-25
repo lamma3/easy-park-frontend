@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { List } from 'antd-mobile';
 import ParkingLotBadge from './ui/ParkingLotBadge';
 import ParkingLotApi from '../apis/ParkingLotApi';
+import Loading from './ui/Loading';
+import { withRouter } from "react-router-dom";
+
 
 const Item = List.Item;
 
@@ -11,26 +14,30 @@ class ParkingLotList extends Component {
         super(props);
 
         this.state = {
+            isLoaded: false,
             list: []
         }
     }
 
     componentDidMount() {
         ParkingLotApi.getAllParkingLotList().then((response) => {
+            let apiData = response.data;
             this.setState({
-                list: response.data
+                isLoaded: true,
+                list: apiData
             })
-            console.log(this.state.list);
         })
     }
 
     render() {
-        return (
+        if (!this.state.isLoaded){
+            return <Loading />; 
+        }else return (
             <div>
                 <List className="parking-lot-list">
                     {this.state.list.map((item, index) =>
-                        <Item multipleLine key={index} onClick={() => { }}>
-                            {item.parkingLotName}
+                        <Item multipleLine key={index} onClick={() => {this.props.history.push(`/infos/${item.id}`);}}>
+                            {item.name}
                             <ParkingLotBadge number={item.availableCapacity} />
                         </Item>
                     )}
@@ -39,5 +46,4 @@ class ParkingLotList extends Component {
         );
     }
 }
-
-export default ParkingLotList;
+export default withRouter(ParkingLotList);

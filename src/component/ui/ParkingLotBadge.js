@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../../css/ParkingLotBadge.css';
+import '../../css/ui.css';
 import PropTypes from 'prop-types';
 
 class ParkingLotBadge extends Component {
