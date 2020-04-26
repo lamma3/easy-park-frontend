@@ -14,9 +14,13 @@ class ParkingLotInfo extends Component {
         super(props, context);
 
         this.goBack = this.goBack.bind(this);
+        this.goBookingPage = this.goBookingPage.bind(this);
+        this.isParkingLotFull = this.isParkingLotFull.bind(this);
 
         this.state = {
             isLoaded: false,
+            isDisabledBooking: "",
+            isOnClickDisabled: ""
         }
     }
 
@@ -27,11 +31,27 @@ class ParkingLotInfo extends Component {
                 isLoaded: true,
                 list: apiData
             })
+            this.isParkingLotFull();
         })
+
     }
 
     goBack() {
         this.props.history.goBack();
+    }
+
+    goBookingPage() {
+        this.props.history.push(`/booking/${this.props.match.params.id}`);
+    }
+    
+    isParkingLotFull(){
+        const buttonType = this.state.list.remainCapacity === 0 ? 'primary disabled' : 'primary';
+        const isOnClickDisabled = this.state.list.remainCapacity === 0 ? '' : this.goBookingPage;
+        this.setState({
+            isDisabledBooking: buttonType,
+            isOnClickDisabled: isOnClickDisabled,
+        });
+
     }
 
     render() {
@@ -41,17 +61,26 @@ class ParkingLotInfo extends Component {
             <div className='Info-content'>
                 <div className='Display-card'>
                     <Title level={3}>{this.state.list.name}</Title>
-                    <Text className='detail'>Address: {this.state.list.address}</Text><br />
-                    <Text className='detail'>Hourly Rate: ${this.state.list.hourlyRate}</Text><br />
-                    <Text className='detail'>Remaining Space: <CarFilled /> {this.state.list.remainCapacity}</Text><br />
-                    <Text className='detail'>Rating: {this.state.list.rate}/5</Text><br />
-
-                    <div className='Info-button'>
+                    <div class="Display-container">
+                        <div class="flex-container">
+                            <div class="Info-title"><Text>Address: </Text></div>
+                            <div class="Info-title"><Text>Hourly Rate: </Text></div>
+                            <div class="Info-title"><Text>Remaining Space: </Text></div>
+                            <div class="Info-title"><Text>Rating: </Text></div>
+                        </div>
+                        <div class="flex-container">
+                            <div class="Info-item"><Text>{this.state.list.address}</Text></div>
+                            <div class="Info-item"><Text>${this.state.list.hourlyRate}</Text></div>
+                            <div class="Info-item"><Text><CarFilled /> {this.state.list.remainCapacity}</Text></div> 
+                            <div class="Info-item"><Text>{this.state.list.rate.toFixed(1)} / 5.0</Text></div> 
+                        </div>
+                    </div><div className='Info-button'>
                         <Space size='small'>
                             <Button type="primary" onClick={this.goBack}>Back</Button>
-                            <Button type="primary">Reserve a Space</Button>
+                            <Button type={this.state.isDisabledBooking} onClick={this.state.isOnClickDisabled}>Reserve a Space</Button>
                         </Space>
                     </div>
+                    
                 </div>
 
             </div>

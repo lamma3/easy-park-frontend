@@ -13,14 +13,50 @@
     
 }
 
+.Booking-summary {
+  color: #1e4072;
+}
+
 .Info-content{
   padding-top: 7em;
   text-align: center;
 
 }
 
+.Info-display-alert {
+  color: #e20f00;
+  font-weight: bold;
+  font-size: 20px;
+}
+
 .detail{
   font-size: large;
+  
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 5px;
+}
+
+.flex-container > .Info-title {
+  /* background-color: #FFF; */
+  text-align: right;
+  font-size: large;
+}
+
+.flex-container > .Info-item {
+  /* background-color: #FFF; */
+  text-align: left;
+  font-size: large;
+}
+
+.Display-container{
+  justify-content: center;
+  display:flex;
+  flex-direction:row;
+  margin-right: 65px;
 }
 
 .Info-button{
@@ -62,6 +98,9 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.Rating-stars {
+  padding: 50px 30px;
+}
  .spinner {
     margin: 50% auto;
     width: 40px;
