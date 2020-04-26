@@ -9,12 +9,13 @@ import BookingParkingLot from './component/BookingParkingLot';
 import BookingResult from './component/BookingResult';
 import RatingPage from './component/RatingPage';
 
+
 function App() {
 
   return (
     <div className="App">
       <AppTopNavBar />
-      <div>
+      <div> 
         <Route exact path="/" component={ParkingLotList}></Route>
         {/* <Route path="/search" component={ParkingLotList} /> */}
         <Route path="/infos/:id" component={ParkingLotInfo} />

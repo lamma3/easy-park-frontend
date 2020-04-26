@@ -4,7 +4,8 @@ import ParkingLotBadge from './ui/ParkingLotBadge';
 import ParkingLotApi from '../apis/ParkingLotApi';
 import Loading from './ui/Loading';
 import { withRouter } from "react-router-dom";
-
+import Geolocation from 'react-native-geolocation-service';
+import GpsLocation from './GeoLocation'; 
 
 const Item = List.Item;
 
@@ -34,6 +35,7 @@ class ParkingLotList extends Component {
             return <Loading />; 
         }else return (
             <div>
+                <GpsLocation />
                 <List className="Parking-lot-list">
                     {this.state.list.map((item, index) =>
                         <Item multipleLine key={index} onClick={() => {this.props.history.push(`/infos/${item.id}`);}}>
