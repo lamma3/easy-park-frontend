@@ -31,6 +31,7 @@ class RatingPage extends Component {
   }
 
   goBack() {
+    alert("Thanks for your rating!")
     this.props.history.push("/");
   }
 
@@ -53,7 +54,7 @@ class RatingPage extends Component {
           </div>
           <div className="Info-button">
             <Space size="small">
-              <Button type="primary" onClick={this.goBack}>OK</Button>
+              <Button type="primary" onClick={this.goBack}>Submit</Button>
             </Space>
           </div>
         </div>
