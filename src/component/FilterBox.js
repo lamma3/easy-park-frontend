@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Typography, InputNumber, Space, Button, Form } from 'antd';
+import { Typography, Space, Button, Form } from 'antd';
+import '../css/ui.css';
 
 const { Text } = Typography;
 
@@ -9,50 +10,37 @@ class FilterBox extends Component {
         minHourRate: 0,
         maxHourRate: 100,
         hasElectricCar: null,
-        rate: "desc" 
+        rate: "desc"
     }
 
     constructor(props) {
         super(props);
 
         this.handleChange = this.handleChange.bind(this);
-        this.handleMinHourRateChange = this.handleMinHourRateChange.bind(this);
-        this.handleMaxHourRateChange = this.handleMaxHourRateChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleReset = this.handleReset.bind(this);
 
         this.state = this.initialState;
+    }
 
-        // this.state = {
-        //     distance: 30,
-        //     minHourRate: 0,
-        //     maxHourRate: 100,
-        //     hasElectricCar: null,
-        //     rate: "desc"
-        // }
+    componentDidMount() {
+        document.getElementById("inputMinHourRate").value = 0;
+        document.getElementById("inputMaxHourRate").value = 100;
     }
 
     handleChange(event) {
         this.setState({ [event.target.name]: event.target.value });
     }
 
-    handleMinHourRateChange(value) {
-        this.setState({ minHourRate: value });
-    }
-
-    handleMaxHourRateChange(value) {
-        this.setState({ maxHourRate: value });
-    }
-
     handleSubmit() {
         console.log(this.state.distance, this.state.minHourRate, this.state.maxHourRate, this.state.hasElectricCar, this.state.rate);
     }
 
-    handleReset(){
+    handleReset() {
         console.log(document.getElementById("inputMinHourRate").defaultValue);
         document.getElementById("select_distance").selectedIndex = 0;
-        document.getElementById("inputMinHourRate").value = '$ 0';
-        document.getElementById("inputMaxHourRate").value = '$ 100';
+        document.getElementById("inputMinHourRate").value = 0;
+        document.getElementById("inputMaxHourRate").value = 100;
         document.getElementById("hasElectricCar_yes").checked = false;
         document.getElementById("hasElectricCar_no").checked = false;
         document.getElementById("select_rate").selectedIndex = 0;
@@ -83,21 +71,9 @@ class FilterBox extends Component {
                         </Form.Item>
                         <Form.Item label="Hourly Rate">
                             <Space>
-                                <InputNumber
-                                    id="inputMinHourRate"
-                                    defaultValue={this.state.minHourRate}
-                                    formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                                    parser={value => value.replace(/\$\s?|(,*)/g, '')}
-                                    onChange={this.handleMinHourRateChange}
-                                />
+                                $ <input type="number" id="inputMinHourRate" name="minHourRate" min="0" max="999" onChange={this.handleChange} />
                                 <Text>to</Text>
-                                <InputNumber
-                                    id="inputMaxHourRate"
-                                    defaultValue={this.state.maxHourRate}
-                                    formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                                    parser={value => value.replace(/\$\s?|(,*)/g, '')}
-                                    onChange={this.handleMaxHourRateChange}
-                                />
+                                $ <input type="number" id="inputMaxHourRate" name="maxHourRate" min="0" max="999" onChange={this.handleChange} />
                             </Space>
                         </Form.Item>
                         <Form.Item label="Electric Car?">
@@ -119,7 +95,7 @@ class FilterBox extends Component {
                                 <Button type="primary" danger onClick={this.handleReset}>
                                     Reset
                                 </Button>
-                                <Button type="primary" onClick={this.handleSubmit}>
+                                <Button type="primary" onClick={() => {this.handleSubmit(); this.handleReset();}}>
                                     Search
                                 </Button>
                             </Space>
