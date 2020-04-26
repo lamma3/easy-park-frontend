@@ -7,6 +7,7 @@ import ParkingLotInfo from './component/ParkingLotInfo';
 import FilterBox from './component/FilterBox';
 import BookingParkingLot from './component/BookingParkingLot';
 import BookingResult from './component/BookingResult';
+import RatingPage from './component/RatingPage';
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
         <Route path="/filter" component={FilterBox} />
         <Route path="/booking/:id" component={BookingParkingLot} />
         <Route path="/result/:id" component={BookingResult} />
+        <Route path="/rating/:id" component={RatingPage} />
       </div>
     </div>
   );

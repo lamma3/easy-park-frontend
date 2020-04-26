@@ -12,6 +12,7 @@ class BookingResult extends Component {
     super(props, context);
 
     this.goBack = this.goBack.bind(this);
+    this.goRatingPage = this.goRatingPage.bind(this);
     this.onRandomBookingResult = this.onRandomBookingResult.bind(this);
     this.state = {
       isLoaded: false,
@@ -41,6 +42,10 @@ class BookingResult extends Component {
     this.props.history.push("/");
   }
 
+  goRatingPage() {
+    this.props.history.push(`/rating/${this.props.match.params.id}`);
+  }
+
   render() {
     if (!this.state.isLoaded) {
       return <Loading />;
@@ -52,7 +57,9 @@ class BookingResult extends Component {
 
           <div className="Info-button">
             <Space size="small">
-              <Button type="primary" onClick={this.goBack}>OK</Button>
+              {/* <Button type="primary" onClick={this.goBack}>OK</Button> */}
+              {/* Mock to rating page after book successfully */}
+              <Button type="primary" onClick={this.goRatingPage}>OK</Button> 
             </Space>
           </div>
         </div>
