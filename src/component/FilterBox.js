@@ -4,7 +4,13 @@ import { Typography, InputNumber, Space, Button, Form } from 'antd';
 const { Text } = Typography;
 
 class FilterBox extends Component {
-    formRef = React.createRef();
+    initialState = {
+        distance: 30,
+        minHourRate: 0,
+        maxHourRate: 100,
+        hasElectricCar: null,
+        rate: "desc" 
+    }
 
     constructor(props) {
         super(props);
@@ -15,19 +21,19 @@ class FilterBox extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleReset = this.handleReset.bind(this);
 
-        this.state = {
-            distance: 30,
-            minHourRate: 0,
-            maxHourRate: 100,
-            hasElectricCar: null,
-            rate: "desc"
-        }
+        this.state = this.initialState;
+
+        // this.state = {
+        //     distance: 30,
+        //     minHourRate: 0,
+        //     maxHourRate: 100,
+        //     hasElectricCar: null,
+        //     rate: "desc"
+        // }
     }
 
     handleChange(event) {
         this.setState({ [event.target.name]: event.target.value });
-        console.log(event.target.name);
-        event.preventDefault();
     }
 
     handleMinHourRateChange(value) {
@@ -42,20 +48,18 @@ class FilterBox extends Component {
         console.log(this.state.distance, this.state.minHourRate, this.state.maxHourRate, this.state.hasElectricCar, this.state.rate);
     }
 
-    handleReset() {
-        // document.getElementById("select_distance").selectedIndex = 0;
-        // document.getElementById("inputMinHourRate").value = `$ 0`;
-        // document.getElementById("inputMaxHourRate").value = `$ 100`;
-        // document.getElementById("hasElectricCar_yes").checked = false;
-        // document.getElementById("hasElectricCar_no").checked = false;
-        // document.getElementById("select_rate").selectedIndex = 0;
-        // this.setState = {
-        //     distance: 30,
-        //     minHourRate: 0,
-        //     maxHourRate: 100,
-        //     hasElectricCar: null,
-        //     rate: "desc"
-        // }
+    handleReset(){
+        console.log(document.getElementById("inputMinHourRate").defaultValue);
+        document.getElementById("select_distance").selectedIndex = 0;
+        document.getElementById("inputMinHourRate").value = '$ 0';
+        document.getElementById("inputMaxHourRate").value = '$ 100';
+        document.getElementById("hasElectricCar_yes").checked = false;
+        document.getElementById("hasElectricCar_no").checked = false;
+        document.getElementById("select_rate").selectedIndex = 0;
+
+        this.setState(() => this.initialState);
+        console.log(this.state.distance, this.state.minHourRate, this.state.maxHourRate, this.state.hasElectricCar, this.state.rate);
+
     }
 
     render() {
@@ -66,7 +70,6 @@ class FilterBox extends Component {
                 </div>
                 <div className="Filter-box">
                     <Form
-                        ref={this.formRef}
                         layout="horizontal"
                         initialValues="small"
                         size="small"
@@ -82,7 +85,7 @@ class FilterBox extends Component {
                             <Space>
                                 <InputNumber
                                     id="inputMinHourRate"
-                                    defaultValue={0}
+                                    defaultValue={this.state.minHourRate}
                                     formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                                     parser={value => value.replace(/\$\s?|(,*)/g, '')}
                                     onChange={this.handleMinHourRateChange}
@@ -90,7 +93,7 @@ class FilterBox extends Component {
                                 <Text>to</Text>
                                 <InputNumber
                                     id="inputMaxHourRate"
-                                    defaultValue={100}
+                                    defaultValue={this.state.maxHourRate}
                                     formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                                     parser={value => value.replace(/\$\s?|(,*)/g, '')}
                                     onChange={this.handleMaxHourRateChange}
