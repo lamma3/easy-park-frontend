@@ -4,8 +4,6 @@ import ParkingLotBadge from './ui/ParkingLotBadge';
 import ParkingLotApi from '../apis/ParkingLotApi';
 import Loading from './ui/Loading';
 import { withRouter } from "react-router-dom";
-import Geolocation from 'react-native-geolocation-service';
-import GpsLocation from './GeoLocation'; 
 
 const Item = List.Item;
 
@@ -33,7 +31,9 @@ class ParkingLotList extends Component {
     }
 
     showResult(){
-        ParkingLotApi.getAllParkingLotList(this.props.distance, this.props.minHourRate, this.props.maxHourRate, this.props.hasElectricCar, this.props.rate)
+        ParkingLotApi.getAllParkingLotList(this.props.distance,
+            this.props.minHourRate, this.props.maxHourRate, 
+            this.props.hasElectricCar, this.props.rate)
         .then((response) => {
             let apiData = response.data;
             this.setState({
