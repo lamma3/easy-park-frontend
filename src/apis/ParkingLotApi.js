@@ -12,8 +12,8 @@ class ParkingLotApi {
 
         if (distance!==0){
             parsed['distance'] = distance;
-            parsed['latitude'] = latitude;
-            parsed['longitude'] = longitude
+            parsed['deviceLatitude'] = latitude;
+            parsed['deviceLongitude'] = longitude
         }
 
         if (minHourRate!==0){
