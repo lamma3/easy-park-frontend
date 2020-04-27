@@ -64,9 +64,6 @@ class FilterBox extends Component {
     render() {
         return (
             <div>
-                <div>
-                    <input className="Search-box" type="text" placeholder="Search" />
-                </div>
                 <div className="Filter-box">
                     <Form
                         layout="horizontal"
