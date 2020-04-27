@@ -4,7 +4,12 @@ import { API_URL } from '../constant/constants';
 class ParkingLotApi {
 
     static getAllParkingLotList(distance, minHourRate, maxHourRate, hasElectricCar, rate){
-        const GET_URL = `${API_URL}/parking-lots`;
+        let PARAM = '';
+        if (minHourRate!==0){
+            PARAM = PARAM + '?priceFrom=' + minHourRate;
+        }
+        const GET_URL = `${API_URL}/parking-lots`+PARAM;
+        console.log(GET_URL);
         return axios.get(GET_URL);
 
     }

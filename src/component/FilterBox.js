@@ -95,7 +95,7 @@ class FilterBox extends Component {
                             <select name="rate" id="select_rate" onChange={this.handleChange}>
                                 <option value="">No preference</option>
                                 <option value="desc">From High to Low</option>
-                                <option value="acse">From Low to High</option>
+                                <option value="asc">From Low to High</option>
                             </select>
                         </Form.Item>
                         <Form.Item>
