@@ -10,6 +10,13 @@ import GpsLocation from './GeoLocation';
 const Item = List.Item;
 
 class ParkingLotList extends Component {
+        initialState = {
+        distance: 0,
+        minHourRate: 0,
+        maxHourRate: 0,
+        hasElectricCar: null,
+        rate: null
+    }
 
     constructor(props) {
         super(props);
@@ -20,8 +27,16 @@ class ParkingLotList extends Component {
         }
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps !== this.props) {
+            console.log("update! ");
+        }
+    }
+
     componentDidMount() {
-        ParkingLotApi.getAllParkingLotList().then((response) => {
+        console.log(this.props);
+        ParkingLotApi.getAllParkingLotList(this.props.distance, this.props.minHourRate, this.props.maxHourRate, this.props.hasElectricCar, this.props.rate)
+        .then((response) => {
             let apiData = response.data;
             this.setState({
                 isLoaded: true,
@@ -30,12 +45,13 @@ class ParkingLotList extends Component {
         })
     }
 
+
     render() {
         if (!this.state.isLoaded){
             return <Loading />; 
         }else return (
             <div>
-                <GpsLocation />
+                {/* <GpsLocation /> */}
                 <List className="Parking-lot-list">
                     {this.state.list.map((item, index) =>
                         <Item multipleLine key={index} onClick={() => {this.props.history.push(`/infos/${item.id}`);}}>

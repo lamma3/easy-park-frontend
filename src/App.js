@@ -8,7 +8,7 @@ import FilterBox from './component/FilterBox';
 import BookingParkingLot from './component/BookingParkingLot';
 import BookingResult from './component/BookingResult';
 import RatingPage from './component/RatingPage';
-
+import ParkingLotIndex from './component/ParkingLotIndex';
 
 function App() {
 
@@ -23,6 +23,7 @@ function App() {
         <Route path="/booking/:id" component={BookingParkingLot} />
         <Route path="/result/:id" component={BookingResult} />
         <Route path="/rating/:id" component={RatingPage} />
+        <Route path="/index" component={ParkingLotIndex} />
       </div>
     </div>
   );
