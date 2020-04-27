@@ -14,6 +14,7 @@ class RatingPage extends Component {
     super(props, context);
 
     this.goBack = this.goBack.bind(this);
+    this.onRatingChange = this.onRatingChange.bind(this);
     this.state = {
       isLoaded: false,
       random_boolean: false,
@@ -25,14 +26,36 @@ class RatingPage extends Component {
       let apiData = response.data;
       this.setState({
           isLoaded: true,
-          list: apiData
+          list: apiData,
+          ratingResult: "",
+          rating: 3,
       })
   })
   }
 
   goBack() {
-    alert("Thanks for your rating!")
-    this.props.history.push("/");
+    const parkingLotId = this.props.match.params.id;
+    ParkingLotApi.postParkingRatingById(parkingLotId, this.state.rating).then((response) => {
+      let apiResponse = response.data;
+      if(apiResponse.status === 201) {
+        this.setState({ ratingResult: "Success" })
+      }else {
+        this.setState({ ratingResult: "Failure"})
+      }
+    })
+
+    if(this.state.ratingResult === "Success") {
+      alert("Thanks for your rating!")
+      this.props.history.push("/");
+    } else if(this.state.ratingResult === "Failure") {
+      alert("Something wrong with your network, please submit again");
+    }
+    
+  }
+
+  onRatingChange(rate) {
+    alert(rate); //apply api here
+    this.setState({ rating: rate });
   }
 
   render() {
@@ -49,7 +72,7 @@ class RatingPage extends Component {
                 initialRating={3}
                 emptySymbol={<StarOutlined style={{ fontSize: '50px', color: '#FFDF00', padding: '0 5px'}}/>}
                 fullSymbol={<StarFilled style={{ fontSize: '50px', color: '#FFDF00', padding: '0 5px'}}/>}
-                onChange={(rate) => alert(rate)}
+                onChange={(rate) => this.onRatingChange(rate)}
               />
           </div>
           <div className="Info-button">
