@@ -16,7 +16,7 @@ function App() {
     <div className="App">
       <AppTopNavBar />
       <div> 
-        <Route exact path="/" component={ParkingLotList}></Route>
+        <Route exact path="/" component={ParkingLotIndex}></Route>
         {/* <Route path="/search" component={ParkingLotList} /> */}
         <Route path="/infos/:id" component={ParkingLotInfo} />
         <Route path="/filter" component={FilterBox} />
