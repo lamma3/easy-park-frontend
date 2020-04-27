@@ -6,6 +6,7 @@ import '../css/ui.css';
 import PropTypes from 'prop-types';
 import FilterBox from './FilterBox';
 import ParkingLotList from './ParkingLotList';
+import { FAKE_LOCATION } from '../constant/constants';
 
 class ParkingLotIndex extends Component {
 
@@ -32,17 +33,23 @@ class ParkingLotIndex extends Component {
     }
 
     getLocation() {
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition((position) => {
-            this.setState(() => {
-                return {
-                    latitude: position.coords.latitude,
-                    longitude: position.coords.longitude
-                }
-            })
-          });
-        }
-      }
+        // if (navigator.geolocation) {
+        //   navigator.geolocation.getCurrentPosition((position) => {
+        //     this.setState(() => {
+        //         return {
+        //             latitude: position.coords.latitude,
+        //             longitude: position.coords.longitude
+        //         }
+        //     })
+        //   });
+        // }
+        this.setState(() => {
+            return {
+                latitude: FAKE_LOCATION.lat,
+                longitude: FAKE_LOCATION.lng
+            }
+        })
+    }
 
     onOpenChange() {
         this.setState((prevState) => { return { open: !prevState.open } });
