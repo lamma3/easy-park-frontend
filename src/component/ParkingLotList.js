@@ -43,6 +43,7 @@ class ParkingLotList extends Component {
 
     showResult(){
         ParkingLotApi.getAllParkingLotList(this.props.distance,
+            this.props.latitude, this.props.longitude,
             this.props.minHourRate, this.props.maxHourRate, 
             this.props.hasElectricCar, this.props.rate)
         .then((response) => {
