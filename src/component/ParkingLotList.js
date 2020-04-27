@@ -10,13 +10,6 @@ import GpsLocation from './GeoLocation';
 const Item = List.Item;
 
 class ParkingLotList extends Component {
-        initialState = {
-        distance: 0,
-        minHourRate: 0,
-        maxHourRate: 0,
-        hasElectricCar: null,
-        rate: null
-    }
 
     constructor(props) {
         super(props);

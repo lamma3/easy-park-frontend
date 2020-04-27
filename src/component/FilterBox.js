@@ -1,18 +1,11 @@
 import React, { Component } from 'react';
 import { Typography, Space, Button, Form } from 'antd';
-import ParkingLotApi from '../apis/ParkingLotApi';
 import '../css/ui.css';
+import {GET_ALL_BY_SEARCH} from '../constant/constants';
 
 const { Text } = Typography;
 
 class FilterBox extends Component {
-    initialState = {
-        distance: 0,
-        minHourRate: 0,
-        maxHourRate: 0,
-        hasElectricCar: null,
-        rate: null
-    }
 
     constructor(props) {
         super(props);
@@ -21,7 +14,7 @@ class FilterBox extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleReset = this.handleReset.bind(this);
 
-        this.state = this.initialState;
+        this.state = GET_ALL_BY_SEARCH;
 
     }
 
@@ -45,13 +38,13 @@ class FilterBox extends Component {
         console.log(document.getElementById("inputMinHourRate").defaultValue);
         document.getElementById("select_distance").selectedIndex = 0;
         document.getElementById("inputMinHourRate").value = 0;
-        document.getElementById("inputMaxHourRate").value = 100;
+        document.getElementById("inputMaxHourRate").value = 0;
         // document.getElementById("hasElectricCar_yes").checked = false;
         document.getElementById("hasElectricCar_yes").disabled = true;
         document.getElementById("hasElectricCar_no").checked = true;
         document.getElementById("select_rate").selectedIndex = 0;
 
-        this.setState(() => this.initialState);
+        this.setState(() => GET_ALL_BY_SEARCH);
         console.log(this.state.distance, this.state.minHourRate, this.state.maxHourRate, this.state.hasElectricCar, this.state.rate);
 
     }
