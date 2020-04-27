@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { Drawer } from 'antd-mobile';
+import {Button} from 'antd';
+import { FilterOutlined } from '@ant-design/icons';
 import '../css/ui.css';
 import PropTypes from 'prop-types';
 import FilterBox from './FilterBox';
@@ -10,6 +13,7 @@ class ParkingLotIndex extends Component {
         super(props);
 
         this.onUpdate = this.onUpdate.bind(this);
+        this.onOpenChange = this.onOpenChange.bind(this);
 
         this.state = {
             distance: 0,
@@ -17,9 +21,14 @@ class ParkingLotIndex extends Component {
             maxHourRate: 0,
             hasElectricCar: null,
             rate: null,
-            isShowResult: false
+            isShowResult: false,
+            open: false
         }
 
+    }
+
+    onOpenChange() {
+        this.setState((prevState) => { return { open: !prevState.open } });
     }
 
     onUpdate(value) {
@@ -36,9 +45,28 @@ class ParkingLotIndex extends Component {
     }
 
     render() {
+        const sidebar = (<FilterBox onUpdate={this.onUpdate} />);
         return (
             <div>
-                <FilterBox onUpdate={this.onUpdate} />
+                <div>
+                    <input className="Search-box" type="text" placeholder="Search" />
+                    <Button onClick={this.onOpenChange}><FilterOutlined /></Button>
+                </div>
+                {
+                    this.state.open ?
+                        <Drawer
+                            className="my-drawer"
+                            style={{ minHeight: document.documentElement.clientHeight }}
+                            enableDragHandle
+                            position="right"
+                            contentStyle={{ textAlign: 'center'}}
+                            sidebar={sidebar}
+                            open={this.state.open}
+                            onOpenChange={this.onOpenChange}
+                        ></Drawer> : <div></div>
+                }
+
+                {/* <FilterBox onUpdate={this.onUpdate} /> */}
                 {
                     this.state.isShowResult ?
                         <ParkingLotList distance={this.state.distance}

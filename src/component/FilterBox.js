@@ -21,8 +21,6 @@ class FilterBox extends Component {
     componentDidMount() {
         document.getElementById("inputMinHourRate").value = 0;
         document.getElementById("inputMaxHourRate").value = 0;
-        document.getElementById("hasElectricCar_yes").disabled = true;
-        document.getElementById("hasElectricCar_no").checked = true;
     }
 
     handleChange(event) {
@@ -45,9 +43,8 @@ class FilterBox extends Component {
         document.getElementById("select_distance").selectedIndex = 0;
         document.getElementById("inputMinHourRate").value = 0;
         document.getElementById("inputMaxHourRate").value = 0;
-        // document.getElementById("hasElectricCar_yes").checked = false;
-        document.getElementById("hasElectricCar_yes").disabled = true;
-        document.getElementById("hasElectricCar_no").checked = true;
+        document.getElementById("hasElectricCar_yes").checked = false;
+        document.getElementById("hasElectricCar_no").checked = false;
         document.getElementById("select_rate").selectedIndex = 0;
         this.resetBorderColor();
 
@@ -67,9 +64,6 @@ class FilterBox extends Component {
     render() {
         return (
             <div>
-                <div>
-                    <input className="Search-box" type="text" placeholder="Search" />
-                </div>
                 <div className="Filter-box">
                     <Form
                         layout="horizontal"
@@ -80,9 +74,8 @@ class FilterBox extends Component {
                             <Space>Within
                                 <select name="distance" id="select_distance" value={this.state.distance} onChange={this.handleChange}>
                                     <option value="0">No preference</option>
-                                    <option value="100">100 meters</option>
-                                    <option value="150">150 meters</option>
-                                    <option value="300">300 meters</option>
+                                    <option value="4000">4 km</option>
+                                    <option value="6000">6 km</option>
                                 </select>
                             </Space>
                         </Form.Item>

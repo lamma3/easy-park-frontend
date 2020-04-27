@@ -1,10 +1,12 @@
-import React, { Component } from 'react';
+import React, {Component, useState} from 'react';
 import '../css/ui.css';
 import { Typography, Button, Space } from 'antd';
 import ParkingLotApi from '../apis/ParkingLotApi';
 import { CarFilled } from '@ant-design/icons';
 import Loading from './ui/Loading';
 import { withRouter } from "react-router-dom";
+import BookingModal from './Modal/BookingModal.js';
+
 
 const { Title, Text } = Typography;
 
@@ -54,7 +56,11 @@ class ParkingLotInfo extends Component {
 
     }
 
+
+
     render() {
+
+
         if (!this.state.isLoaded) {
             return <Loading />;
         } else return (
@@ -80,8 +86,8 @@ class ParkingLotInfo extends Component {
                             <Button type={this.state.isDisabledBooking} onClick={this.state.isOnClickDisabled}>Reserve a Space</Button>
                         </Space>
                     </div>
-                    
                 </div>
+                <BookingModal></BookingModal>
 
             </div>
         );

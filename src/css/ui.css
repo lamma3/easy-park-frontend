@@ -61,7 +61,7 @@
 
 .Search-box{
   opacity: 0.8;
-  width: 95%;
+  width: 80%;
   height: 2em;
   text-align: center;
   margin: 2.5%;
@@ -70,20 +70,34 @@
 }
 
 .Filter-box{
-  margin-left: 2.5%;
+  margin-left: 2.5%;   
+  margin-top: 30%;
   padding: 20px;
   display: inline-block;
   width: 95%;
   box-sizing: border-box;
   border-radius: 10px;
   background-color: #FFFFFF;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
 }
 
 #inputMinHourRate, #inputMaxHourRate{
   border: solid 0.7px #aaaaaa;
   line-height: 12px;
   padding-left: 5px;
+}
+
+.Modal-box{
+    position: relative;
+    display: block;
+    margin: auto;
+    text-align: center;
+    padding: 20px;
+    width: 80%;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .Display-card{
