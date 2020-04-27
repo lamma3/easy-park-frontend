@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import { withRouter } from "react-router-dom";
 import '../css/ui.css';
 import { Typography, Button, Space } from 'antd';
+import ParkingLotApi from '../apis/ParkingLotApi';
 const { Title, Text } = Typography;
+
 class BookingHistory extends Component {
 
  constructor(props) {
@@ -13,19 +15,39 @@ class BookingHistory extends Component {
      this.goRatingPage = this.goRatingPage.bind(this);
 
      this.state = {
-        isLoaded: false
+        isLoaded: false,
+        booking: [],
+        parkingLot: []
+    
      }
  }
 
- componentDidMount(){}
+
  
  goBack() {
     this.props.history.push('/');
 }
 
 goRatingPage() {
-    this.props.history.push(`/rating/${this.props.match.params.id}`);
+    this.props.history.push(`/rating/${this.state.parkingLot.id}`);
   }
+
+
+
+  componentDidMount() {
+    ParkingLotApi.getBookingById(1).then((response) => {
+        let apiData = response.data;
+        this.setState({
+            isLoaded: true,
+            booking: apiData,
+            parkingLot: apiData.parkingLot
+
+        },()=>{
+        console.log(this.state.booking)}) 
+    })
+
+}
+
 
 
     render() {
@@ -34,19 +56,15 @@ goRatingPage() {
                  <div className='Display-card'>
                  <Title level={3}>Booking History</Title>
                  <div class="Display-container">
-                        <div class="Info-title"><Text>Booking ID: </Text></div>
-                        <div class="Info-item"><Text>1</Text></div>
 
-                        <div class="Info-title"><Text>Parking-lot Name: </Text></div>
-                        <div class="Info-item"><Text>A</Text></div>
-
-                        <div class="Info-title"><Text>Parking-lot Address: </Text></div>
-                        <div class="Info-item"><Text>AddressA</Text></div>
-
-                        <div class="Info-title"><Text>Booking Status: </Text></div>
-                        <div class="Info-item"><Text>Reserved</Text></div>
-
-                        
+                 <div class="Info-title"><Text>Booking ID: </Text></div>
+                <div class="Info-item"><Text>{this.state.booking.id}</Text></div>
+                <div class="Info-title"><Text>Parking-Lot Name: </Text></div>
+                <div class="Info-item"><Text>{this.state.parkingLot.name}</Text></div>
+                <div class="Info-title"><Text>Pakring-Lot Address: </Text></div>
+                <div class="Info-item"><Text>{this.state.parkingLot.address}</Text></div>
+                <div class="Info-title"><Text>Booking Status: </Text></div>
+                <div class="Info-item"><Text>{this.state.booking.status}</Text></div>
                    
                     </div>
                  <div className='Info-button'>
