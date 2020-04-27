@@ -5,7 +5,7 @@ import ParkingLotApi from '../apis/ParkingLotApi';
 import Loading from './ui/Loading';
 import { withRouter } from "react-router-dom";
 import GoogleMapReact from 'google-map-react';
-import { GOOGLE_MAP_API_KEY } from '../constant/constants';
+import { GOOGLE_MAP_API_KEY, FAKE_LOCATION } from '../constant/constants';
 
 const Item = List.Item;
 
@@ -20,7 +20,7 @@ class ParkingLotList extends Component {
             isLoaded: false,
             list: [],
             zoom: 15,
-            center: {lat: 22.390411, lng: 114.204356},
+            center: FAKE_LOCATION,
             googleApiReference: null,
             markers: [],
         }

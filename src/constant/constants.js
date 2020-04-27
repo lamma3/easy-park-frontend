@@ -14,3 +14,4 @@ export const THANK_YOU_VOTING_MESSAGE = "Thanks for your rating!";
 export const VOTING_ERROR_MESSAGE = "Something wrong with your network, please submit again";
 export const INITIAL_VOTING_STAR_NUMBER = 3;
 export const FITLER_INPUT_ERROR_MESSAGE = "The minimum hourly rate should be smaller than maximum hourly rate";
+export const FAKE_LOCATION = {lat: 22.390411, lng: 114.204356};
