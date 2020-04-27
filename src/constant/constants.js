@@ -1,4 +1,5 @@
 export const API_URL = process.env.REACT_APP_API_URL;
+export const GOOGLE_MAP_API_KEY = process.env.REACT_APP_GOOGLE_MAP_API_KEY;
 export const DUMMY_PARKING_LOT_LIST = [{
     parkingLotId: 1,
     parkingLotName: "科學園3期停車場",
