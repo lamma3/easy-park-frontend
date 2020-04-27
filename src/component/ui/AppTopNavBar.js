@@ -1,7 +1,17 @@
 import React, { Component } from 'react';
 import { NavBar, Icon } from 'antd-mobile';
+import {  Button } from 'antd';
+import { withRouter } from "react-router-dom";
 
 class AppTopNavBar extends Component {
+    constructor(props) {
+        super(props)
+    
+        this.state = {
+             
+        }
+    }
+    
     render() {
         return (
             <div className = "Nav-bar" >    
@@ -13,9 +23,11 @@ class AppTopNavBar extends Component {
                         <Icon key="1" type="ellipsis" />,
                     ]}>
                     EasyPark</NavBar>
+                    <Button onClick = {()=>{this.props.history.push('/history')}}>View Booking History</Button>
             </div>
+           
         );
     }
 }
 
-export default AppTopNavBar;
+export default withRouter(AppTopNavBar);
