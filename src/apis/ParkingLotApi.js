@@ -5,13 +5,15 @@ const queryString = require('query-string');
 
 class ParkingLotApi {
 
-    static getAllParkingLotList(distance, minHourRate, maxHourRate, hasElectricCar, rate){
+    static getAllParkingLotList(distance, latitude, longitude, minHourRate, maxHourRate, hasElectricCar, rate){
         let GET_URL = `${API_URL}/parking-lots`
 
         let parsed = {};
 
         if (distance!==0){
             parsed['distance'] = distance;
+            parsed['deviceLatitude'] = latitude;
+            parsed['deviceLongitude'] = longitude
         }
 
         if (minHourRate!==0){
@@ -45,6 +47,12 @@ class ParkingLotApi {
     static postParkingRatingById(id, score) {
         const POST_BY_ID_URL = `${API_URL}/parking-lots/${id}/ratings`;
         return axios.post(POST_BY_ID_URL, {score: score});
+    }
+
+    static getBookingById(id){
+        const GET_BOOKING_BY_ID_URL = `${API_URL}/parking-lots/bookings/${id}`;
+        return axios.get(GET_BOOKING_BY_ID_URL);
+
     }
 }
 

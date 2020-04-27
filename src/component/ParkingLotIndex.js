@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Drawer } from 'antd-mobile';
-import {Button} from 'antd';
+import { Button } from 'antd';
 import { FilterOutlined } from '@ant-design/icons';
 import '../css/ui.css';
 import PropTypes from 'prop-types';
 import FilterBox from './FilterBox';
 import ParkingLotList from './ParkingLotList';
+import { FAKE_LOCATION } from '../constant/constants';
 
 class ParkingLotIndex extends Component {
 
@@ -14,6 +15,8 @@ class ParkingLotIndex extends Component {
 
         this.onUpdate = this.onUpdate.bind(this);
         this.onOpenChange = this.onOpenChange.bind(this);
+        this.getLocation = this.getLocation.bind(this);
+
 
         this.state = {
             distance: 0,
@@ -21,10 +24,31 @@ class ParkingLotIndex extends Component {
             maxHourRate: 0,
             hasElectricCar: null,
             rate: null,
+            latitude: 0,
+            longitude: 0,
             isShowResult: false,
             open: false
         }
 
+    }
+
+    getLocation() {
+        // if (navigator.geolocation) {
+        //   navigator.geolocation.getCurrentPosition((position) => {
+        //     this.setState(() => {
+        //         return {
+        //             latitude: position.coords.latitude,
+        //             longitude: position.coords.longitude
+        //         }
+        //     })
+        //   });
+        // }
+        this.setState(() => {
+            return {
+                latitude: FAKE_LOCATION.lat,
+                longitude: FAKE_LOCATION.lng
+            }
+        })
     }
 
     onOpenChange() {
@@ -32,6 +56,7 @@ class ParkingLotIndex extends Component {
     }
 
     onUpdate(value) {
+        this.getLocation();
         this.setState(() => {
             return {
                 distance: parseInt(value.distance),
@@ -59,7 +84,7 @@ class ParkingLotIndex extends Component {
                             style={{ minHeight: document.documentElement.clientHeight }}
                             enableDragHandle
                             position="right"
-                            contentStyle={{ textAlign: 'center'}}
+                            contentStyle={{ textAlign: 'center' }}
                             sidebar={sidebar}
                             open={this.state.open}
                             onOpenChange={this.onOpenChange}
@@ -70,6 +95,8 @@ class ParkingLotIndex extends Component {
                 {
                     this.state.isShowResult ?
                         <ParkingLotList distance={this.state.distance}
+                            latitude={this.state.latitude}
+                            longitude={this.state.longitude}
                             minHourRate={this.state.minHourRate}
                             maxHourRate={this.state.maxHourRate}
                             hasElectricCar={this.state.hasElectricCar}
