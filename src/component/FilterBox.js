@@ -1,18 +1,11 @@
 import React, { Component } from 'react';
 import { Typography, Space, Button, Form } from 'antd';
-import ParkingLotApi from '../apis/ParkingLotApi';
 import '../css/ui.css';
+import {GET_ALL_BY_SEARCH} from '../constant/constants';
 
 const { Text } = Typography;
 
 class FilterBox extends Component {
-    initialState = {
-        distance: 0,
-        minHourRate: 0,
-        maxHourRate: 0,
-        hasElectricCar: null,
-        rate: null
-    }
 
     constructor(props) {
         super(props);
@@ -21,7 +14,7 @@ class FilterBox extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleReset = this.handleReset.bind(this);
 
-        this.state = this.initialState;
+        this.state = GET_ALL_BY_SEARCH;
 
     }
 
@@ -45,13 +38,13 @@ class FilterBox extends Component {
         console.log(document.getElementById("inputMinHourRate").defaultValue);
         document.getElementById("select_distance").selectedIndex = 0;
         document.getElementById("inputMinHourRate").value = 0;
-        document.getElementById("inputMaxHourRate").value = 100;
+        document.getElementById("inputMaxHourRate").value = 0;
         // document.getElementById("hasElectricCar_yes").checked = false;
         document.getElementById("hasElectricCar_yes").disabled = true;
         document.getElementById("hasElectricCar_no").checked = true;
         document.getElementById("select_rate").selectedIndex = 0;
 
-        this.setState(() => this.initialState);
+        this.setState(() => GET_ALL_BY_SEARCH);
         console.log(this.state.distance, this.state.minHourRate, this.state.maxHourRate, this.state.hasElectricCar, this.state.rate);
 
     }
@@ -71,9 +64,9 @@ class FilterBox extends Component {
                         <Form.Item label="Distance">
                             <select name="distance" id="select_distance" value={this.state.distance} onChange={this.handleChange}>
                                 <option value="0">No preference</option>
-                                <option value="30">30 meters</option>
-                                <option value="50">50 meters</option>
                                 <option value="100">100 meters</option>
+                                <option value="150">150 meters</option>
+                                <option value="300">300 meters</option>
                             </select>
                         </Form.Item>
                         <Form.Item label="Hourly Rate">
@@ -95,7 +88,7 @@ class FilterBox extends Component {
                             <select name="rate" id="select_rate" onChange={this.handleChange}>
                                 <option value="">No preference</option>
                                 <option value="desc">From High to Low</option>
-                                <option value="acse">From Low to High</option>
+                                <option value="asc">From Low to High</option>
                             </select>
                         </Form.Item>
                         <Form.Item>
