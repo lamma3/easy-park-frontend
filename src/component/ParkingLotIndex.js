@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Drawer } from 'antd-mobile';
 import { Button } from 'antd';
 import { FilterOutlined } from '@ant-design/icons';
 import '../css/ui.css';
@@ -56,6 +55,7 @@ class ParkingLotIndex extends Component {
     }
 
     onUpdate(value) {
+        this.onOpenChange();
         this.getLocation();
         this.setState(() => {
             return {
@@ -70,7 +70,6 @@ class ParkingLotIndex extends Component {
     }
 
     render() {
-        const sidebar = (<FilterBox onUpdate={this.onUpdate} />);
         return (
             <div>
                 <div>
@@ -79,16 +78,11 @@ class ParkingLotIndex extends Component {
                 </div>
                 {
                     this.state.open ?
-                        <Drawer
-                            className="my-drawer"
-                            style={{ minHeight: document.documentElement.clientHeight }}
-                            enableDragHandle
-                            position="right"
-                            contentStyle={{ textAlign: 'center' }}
-                            sidebar={sidebar}
-                            open={this.state.open}
-                            onOpenChange={this.onOpenChange}
-                        ></Drawer> : <div></div>
+                        <div>
+                            <div className="Filter-box-bg" onClick={this.onOpenChange}></div>
+                            <FilterBox onUpdate={this.onUpdate} />
+                        </div>
+                        : <div></div>
                 }
 
                 {/* <FilterBox onUpdate={this.onUpdate} /> */}
@@ -103,7 +97,7 @@ class ParkingLotIndex extends Component {
                             rate={this.state.rate}
                         /> : <div></div>
                 }
-            </div>
+            </div >
         );
     }
 }

@@ -2,7 +2,7 @@ import React, {Component, useState} from 'react';
 import '../css/ui.css';
 import { Typography, Button, Space } from 'antd';
 import ParkingLotApi from '../apis/ParkingLotApi';
-import { CarFilled } from '@ant-design/icons';
+import { CarFilled , ThunderboltFilled } from '@ant-design/icons';
 import Loading from './ui/Loading';
 import { withRouter } from "react-router-dom";
 
@@ -72,7 +72,10 @@ class ParkingLotInfo extends Component {
                         <div class="Info-item"><Text>${this.state.list.hourRate}</Text></div>
                         
                         <div class="Info-title"><Text>Remaining Space: </Text></div>
-                        <div class="Info-item"><Text><CarFilled /> {this.state.list.availableCapacity}</Text></div> 
+                        <div class="Info-item">
+                            <Text><CarFilled /> {this.state.list.availableCapacity}</Text><br/>
+                            <Text><ThunderboltFilled /> {this.state.list.availableChargeCapacity}</Text>
+                        </div> 
                         
                         <div class="Info-title"><Text>Rating: </Text></div>
                         <div class="Info-item"><Text>{this.state.list.rating.toFixed(1)} / 5.0</Text></div> 
