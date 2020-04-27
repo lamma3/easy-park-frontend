@@ -20,7 +20,7 @@ class ParkingLotList extends Component {
             isLoaded: false,
             list: [],
             zoom: 15,
-            center: {lat: 22.391016, lng: 114.202189},
+            center: {lat: 22.390411, lng: 114.204356},
             googleApiReference: null,
             markers: [],
         }
@@ -74,6 +74,13 @@ class ParkingLotList extends Component {
 
         // set markers
         const { map, maps } = this.state.googleApiReference;
+        markers.push(new maps.Marker({
+            position: {
+                lat: this.state.center.lat,
+                lng: this.state.center.lng,
+            },
+            map,
+        }));
         this.state.list.forEach((place, index) => {
             markers.push(new maps.Marker({
                 position: {
