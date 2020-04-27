@@ -71,9 +71,9 @@ class FilterBox extends Component {
                         <Form.Item label="Distance">
                             <select name="distance" id="select_distance" value={this.state.distance} onChange={this.handleChange}>
                                 <option value="0">No preference</option>
-                                <option value="30">30 meters</option>
-                                <option value="50">50 meters</option>
                                 <option value="100">100 meters</option>
+                                <option value="150">150 meters</option>
+                                <option value="300">300 meters</option>
                             </select>
                         </Form.Item>
                         <Form.Item label="Hourly Rate">

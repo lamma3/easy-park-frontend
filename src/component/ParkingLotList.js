@@ -31,13 +31,11 @@ class ParkingLotList extends Component {
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps !== this.props) {
-            console.log("update! ");
             this.showResult();
         }
     }
 
     componentDidMount() {
-        console.log(this.props);
         this.showResult();
     }
 

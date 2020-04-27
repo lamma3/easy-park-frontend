@@ -1,15 +1,20 @@
 import axios from 'axios';
 import { API_URL } from '../constant/constants';
 
+const queryString = require('query-string');
+
 class ParkingLotApi {
 
     static getAllParkingLotList(distance, minHourRate, maxHourRate, hasElectricCar, rate){
-        let PARAM = '';
-        if (minHourRate!==0){
-            PARAM = PARAM + '?priceFrom=' + minHourRate;
+
+        let parsed = {
+            distance: distance,
+            priceFrom: minHourRate,
+            priceTo: maxHourRate,
+            ratingOrder: rate
         }
-        const GET_URL = `${API_URL}/parking-lots`+PARAM;
-        console.log(GET_URL);
+        const stringified = "?" + queryString.stringify(parsed);
+        const GET_URL = `${API_URL}/parking-lots`+stringified;
         return axios.get(GET_URL);
 
     }
