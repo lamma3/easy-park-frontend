@@ -45,8 +45,8 @@ class ParkingLotInfo extends Component {
     }
     
     isParkingLotFull(){
-        const buttonType = this.state.list.remainCapacity === 0 ? 'primary disabled' : 'primary';
-        const isOnClickDisabled = this.state.list.remainCapacity === 0 ? '' : this.goBookingPage;
+        const buttonType = this.state.list.availableCapacity === 0 ? 'primary disabled' : 'primary';
+        const isOnClickDisabled = this.state.list.availableCapacity === 0 ? '' : this.goBookingPage;
         this.setState({
             isDisabledBooking: buttonType,
             isOnClickDisabled: isOnClickDisabled,
