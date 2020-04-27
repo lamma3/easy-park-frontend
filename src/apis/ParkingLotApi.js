@@ -26,6 +26,10 @@ class ParkingLotApi {
             parsed['ratingOrder'] = rate;
         }
 
+        if (hasElectricCar!==null){
+            parsed['needCharge'] = hasElectricCar;
+        }
+
         const stringified = "?" + queryString.stringify(parsed);
         GET_URL = GET_URL+stringified;
         return axios.get(GET_URL);
