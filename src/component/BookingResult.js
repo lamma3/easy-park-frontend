@@ -51,9 +51,11 @@ class BookingResult extends Component {
       return <Loading />;
   } else if (!this.state.random_boolean) {
       return (
+        
         <div className="Info-content">
-          <Title level={2}>Successfully Booked</Title>
           <Title level={3}>{this.state.list.name}</Title>
+        <div className='Display-card '>
+          <Text id='Booking-title'>Successfully Booked</Text>
 
           <div className="Info-button">
             <Space size="small">
@@ -63,12 +65,15 @@ class BookingResult extends Component {
             </Space>
           </div>
         </div>
+        </div>
       );
     } else
       return (
+        
         <div className="Info-content">
-          <Title level={2}>Failed to Book</Title>
-          <Title level={3}>{this.state.list.name}</Title> <br />
+          <Title level={3}>{this.state.list.name}</Title> 
+        <div className='Display-card'>
+          <Text id='Booking-title'>Failed to Book</Text><br />
           <Text className="Info-display-alert">Please try another parking lot</Text><br />
           
           <div className="Info-button">
@@ -76,6 +81,7 @@ class BookingResult extends Component {
               <Button type="primary" onClick={this.goBack}>OK</Button>
             </Space>
           </div>
+        </div>
         </div>
       );
   }
