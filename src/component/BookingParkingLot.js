@@ -39,7 +39,7 @@ class BookingParkingLot extends Component {
             <div className='Info-content'>
                     <Title level={2}>{this.state.list.name}</Title>
                     <Text className='Info-display-alert'>Remaining Space:</Text><br />
-                    <Text className='Info-display-alert'>{this.state.list.remainCapacity}</Text> <br />
+                    <Text className='Info-display-alert'>{this.state.list.availableCapacity}</Text> <br />
 
                     <div className='Info-button'>
                         <Space size='small'>

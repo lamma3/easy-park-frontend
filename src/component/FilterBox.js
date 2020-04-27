@@ -44,8 +44,6 @@ class FilterBox extends Component {
         document.getElementById("select_rate").selectedIndex = 0;
 
         this.setState(() => GET_ALL_BY_SEARCH);
-        console.log(this.state.distance, this.state.minHourRate, this.state.maxHourRate, this.state.hasElectricCar, this.state.rate);
-
     }
 
     render() {
