@@ -6,7 +6,8 @@ import { CarFilled } from '@ant-design/icons';
 import Loading from './ui/Loading';
 import { withRouter } from "react-router-dom";
 import BookingModal from './Modal/BookingModal.js';
-
+import Modal from 'react-modal';
+import '../css/popup.css';
 
 const { Title, Text } = Typography;
 
@@ -60,7 +61,6 @@ class ParkingLotInfo extends Component {
 
     render() {
 
-
         if (!this.state.isLoaded) {
             return <Loading />;
         } else return (
@@ -87,7 +87,7 @@ class ParkingLotInfo extends Component {
                         </Space>
                     </div>
                 </div>
-                <BookingModal></BookingModal>
+                
 
             </div>
         );

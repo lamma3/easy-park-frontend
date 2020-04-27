@@ -24,9 +24,9 @@
 }
 
 .Info-display-alert {
-  color: #e20f00;
+  color: #ba3333;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .detail{
@@ -55,8 +55,24 @@
   padding-top: 2em;
 }
 
+.Booking-info-button{
+  padding-top: 2em;
+}
+
 .Parking-lot-list{
-    margin: 10px;
+  margin: 10px;
+}
+
+#Booking-title{
+  font-weight: bold;
+  font-size: 16px;
+  color: #888;
+}
+
+.radio-option {
+  /* padding-top: 10px;
+  padding-right: 5em; */
+  padding: 10px 0 0 10px;
 }
 
 .Search-box{
