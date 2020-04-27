@@ -87,6 +87,19 @@
   padding-left: 5px;
 }
 
+.Modal-box{
+    position: relative;
+    display: block;
+    margin: auto;
+    text-align: center;
+    padding: 20px;
+    width: 80%;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
 .Display-card{
   padding: 20px;
   display: inline-block;
