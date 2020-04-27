@@ -37,6 +37,11 @@ class ParkingLotApi {
         return axios.get(GET_BY_ID_URL);
 
     }
+
+    static postParkingRatingById(id, score) {
+        const POST_BY_ID_URL = `${API_URL}/parking-lots/${id}/ratings`;
+        return axios.post(POST_BY_ID_URL, {score: score});
+    }
 }
 
 export default ParkingLotApi;

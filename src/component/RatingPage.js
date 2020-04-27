@@ -6,6 +6,7 @@ import Loading from "./ui/Loading";
 import { withRouter } from "react-router-dom";
 import { StarOutlined, StarFilled } from '@ant-design/icons';
 import Rating from 'react-rating';
+import { HTTP_STATUS_CREATED, THANK_YOU_VOTING_MESSAGE, VOTING_ERROR_MESSAGE, INITIAL_VOTING_STAR_NUMBER} from '../constant/constants';
 
 const { Title, Text } = Typography;
 
@@ -14,14 +15,16 @@ class RatingPage extends Component {
     super(props, context);
 
     this.goBack = this.goBack.bind(this);
+    this.onRatingChange = this.onRatingChange.bind(this);
     this.state = {
       isLoaded: false,
       random_boolean: false,
+      rating: INITIAL_VOTING_STAR_NUMBER,
     };
   }
 
   componentDidMount() {
-    ParkingLotApi.getParkingLotById(this.props.match.params.id).then((response) => {
+    ParkingLotApi.getParkingLotById(this.props.match.params.id, this.state.rating).then((response) => {
       let apiData = response.data;
       this.setState({
           isLoaded: true,
@@ -31,8 +34,27 @@ class RatingPage extends Component {
   }
 
   goBack() {
-    alert("Thanks for your rating!")
-    this.props.history.push("/");
+    const parkingLotId = this.props.match.params.id;
+    ParkingLotApi.postParkingRatingById(parkingLotId, this.state.rating).then((response) => {
+      console.log(response.status);
+      if(response.status === HTTP_STATUS_CREATED) {
+        alert(THANK_YOU_VOTING_MESSAGE);
+        this.props.history.push("/");
+      }else {
+        alert(VOTING_ERROR_MESSAGE);
+      }
+    })
+    
+  }
+
+  onRatingChange(rate) {
+    this.setState(() => ({ rating: rate}));
+  }
+
+  componentDidUpdate(preProps, prevState) {
+    if(prevState.rating !== this.state.rating) {
+      this.setState({ rating: this.state.rating });
+    }
   }
 
   render() {
@@ -46,10 +68,10 @@ class RatingPage extends Component {
 
           <div className="Rating-stars">
               <Rating
-                initialRating={3}
+                initialRating={this.state.rating}
                 emptySymbol={<StarOutlined style={{ fontSize: '50px', color: '#FFDF00', padding: '0 5px'}}/>}
                 fullSymbol={<StarFilled style={{ fontSize: '50px', color: '#FFDF00', padding: '0 5px'}}/>}
-                onChange={(rate) => alert(rate)}
+                onChange={(rate) => this.onRatingChange(rate)}
               />
           </div>
           <div className="Info-button">
