@@ -34,29 +34,21 @@
   
 }
 
-.flex-container {
-  display: flex;
-  flex-direction: column;
-  margin: 0 5px;
+.Display-container{
+  justify-content: center;
+  display:inline-grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 5px
 }
 
-.flex-container > .Info-title {
-  /* background-color: #FFF; */
+.Display-container > .Info-title {
   text-align: right;
   font-size: large;
 }
 
-.flex-container > .Info-item {
-  /* background-color: #FFF; */
+.Display-container > .Info-item {
   text-align: left;
   font-size: large;
-}
-
-.Display-container{
-  justify-content: center;
-  display:flex;
-  flex-direction:row;
-  margin-right: 65px;
 }
 
 .Info-button{
