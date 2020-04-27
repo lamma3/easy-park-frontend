@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Typography, Space, Button, Form } from 'antd';
+import { Typography, Space, Button, Form, message } from 'antd';
 import '../css/ui.css';
-import { GET_ALL_BY_SEARCH } from '../constant/constants';
+import { GET_ALL_BY_SEARCH, FITLER_INPUT_ERROR_MESSAGE } from '../constant/constants';
 
 const { Text } = Typography;
 
@@ -30,7 +30,14 @@ class FilterBox extends Component {
     }
 
     handleSubmit() {
-        this.props.onUpdate(this.state)
+        if (parseInt(this.state.minHourRate) > parseInt(this.state.maxHourRate)) {
+            message.error(FITLER_INPUT_ERROR_MESSAGE, 3);
+            this.resetBorderColor('error');
+
+        } else { 
+            this.props.onUpdate(this.state);
+            this.resetBorderColor(); 
+        }
     }
 
     handleReset() {
@@ -42,8 +49,19 @@ class FilterBox extends Component {
         document.getElementById("hasElectricCar_yes").disabled = true;
         document.getElementById("hasElectricCar_no").checked = true;
         document.getElementById("select_rate").selectedIndex = 0;
+        this.resetBorderColor();
 
         this.setState(() => GET_ALL_BY_SEARCH);
+    }
+
+    resetBorderColor(value){
+        if (value === 'error'){
+            document.getElementById("inputMinHourRate").style.borderColor = "red";
+            document.getElementById("inputMaxHourRate").style.borderColor = "red";
+        }else {
+            document.getElementById("inputMinHourRate").style.borderColor = "#aaaaaa";
+            document.getElementById("inputMaxHourRate").style.borderColor = "#aaaaaa";
+        }
     }
 
     render() {
