@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Typography, Space, Button, Form } from 'antd';
 import '../css/ui.css';
-import {GET_ALL_BY_SEARCH} from '../constant/constants';
+import { GET_ALL_BY_SEARCH } from '../constant/constants';
 
 const { Text } = Typography;
 
@@ -30,7 +30,6 @@ class FilterBox extends Component {
     }
 
     handleSubmit() {
-        console.log(this.state.distance, this.state.minHourRate, this.state.maxHourRate, this.state.hasElectricCar, this.state.rate);
         this.props.onUpdate(this.state)
     }
 
@@ -62,12 +61,14 @@ class FilterBox extends Component {
                         size="small"
                         onReset={this.handleReset}>
                         <Form.Item label="Distance">
-                            <select name="distance" id="select_distance" value={this.state.distance} onChange={this.handleChange}>
-                                <option value="0">No preference</option>
-                                <option value="100">100 meters</option>
-                                <option value="150">150 meters</option>
-                                <option value="300">300 meters</option>
-                            </select>
+                            <Space>Within
+                                <select name="distance" id="select_distance" value={this.state.distance} onChange={this.handleChange}>
+                                    <option value="0">No preference</option>
+                                    <option value="100">100 meters</option>
+                                    <option value="150">150 meters</option>
+                                    <option value="300">300 meters</option>
+                                </select>
+                            </Space>
                         </Form.Item>
                         <Form.Item label="Hourly Rate">
                             <Space>

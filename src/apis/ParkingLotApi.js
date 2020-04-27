@@ -28,7 +28,6 @@ class ParkingLotApi {
 
         const stringified = "?" + queryString.stringify(parsed);
         GET_URL = GET_URL+stringified;
-        console.log(GET_URL);
         return axios.get(GET_URL);
 
     }
