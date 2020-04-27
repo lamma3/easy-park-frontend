@@ -5,9 +5,6 @@ import ParkingLotApi from '../apis/ParkingLotApi';
 import { CarFilled } from '@ant-design/icons';
 import Loading from './ui/Loading';
 import { withRouter } from "react-router-dom";
-import BookingModal from './Modal/BookingModal.js';
-import Modal from 'react-modal';
-import '../css/popup.css';
 
 const { Title, Text } = Typography;
 

@@ -43,9 +43,9 @@ class BookingParkingLot extends Component {
     onChange = e => {
         console.log('radio checked', e.target.value);
         this.setState({
-          value: e.target.value,
+            value: e.target.value,
         });
-      };
+    };
 
     render() {
         if (!this.state.isLoaded) {
