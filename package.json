@@ -14,6 +14,7 @@
     "axios": "^0.19.2",
     "env-cmd": "^10.1.0",
     "query-string": "^6.12.1",
+    "google-map-react": "^1.1.7",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-native-geolocation-service": "^4.0.0",
