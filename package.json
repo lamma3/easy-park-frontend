@@ -11,6 +11,7 @@
     "antd": "^4.1.4",
     "antd-mobile": "^2.3.1",
     "axios": "^0.19.2",
+    "env-cmd": "^10.1.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-native-geolocation-service": "^4.0.0",
@@ -21,7 +22,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "dotenv -e .env.$NODE_ENV react-scripts build",
+    "build": "env-cmd -f .env.$NODE_ENV react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
