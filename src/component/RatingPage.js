@@ -6,6 +6,7 @@ import Loading from "./ui/Loading";
 import { withRouter } from "react-router-dom";
 import { StarOutlined, StarFilled } from '@ant-design/icons';
 import Rating from 'react-rating';
+import { HTTP_STATUS_CREATED, THANK_YOU_VOTING_MESSAGE, VOTING_ERROR_MESSAGE, INITIAL_VOTING_STAR_NUMBER} from '../constant/constants';
 
 const { Title, Text } = Typography;
 
@@ -18,17 +19,16 @@ class RatingPage extends Component {
     this.state = {
       isLoaded: false,
       random_boolean: false,
+      rating: INITIAL_VOTING_STAR_NUMBER,
     };
   }
 
   componentDidMount() {
-    ParkingLotApi.getParkingLotById(this.props.match.params.id).then((response) => {
+    ParkingLotApi.getParkingLotById(this.props.match.params.id, this.state.rating).then((response) => {
       let apiData = response.data;
       this.setState({
           isLoaded: true,
-          list: apiData,
-          ratingResult: "",
-          rating: 3,
+          list: apiData
       })
   })
   }
@@ -36,26 +36,25 @@ class RatingPage extends Component {
   goBack() {
     const parkingLotId = this.props.match.params.id;
     ParkingLotApi.postParkingRatingById(parkingLotId, this.state.rating).then((response) => {
-      let apiResponse = response.data;
-      if(apiResponse.status === 201) {
-        this.setState({ ratingResult: "Success" })
+      console.log(response.status);
+      if(response.status === HTTP_STATUS_CREATED) {
+        alert(THANK_YOU_VOTING_MESSAGE);
+        this.props.history.push("/");
       }else {
-        this.setState({ ratingResult: "Failure"})
+        alert(VOTING_ERROR_MESSAGE);
       }
     })
-
-    if(this.state.ratingResult === "Success") {
-      alert("Thanks for your rating!")
-      this.props.history.push("/");
-    } else if(this.state.ratingResult === "Failure") {
-      alert("Something wrong with your network, please submit again");
-    }
     
   }
 
   onRatingChange(rate) {
-    alert(rate); //apply api here
-    this.setState({ rating: rate });
+    this.setState(() => ({ rating: rate}));
+  }
+
+  componentDidUpdate(preProps, prevState) {
+    if(prevState.rating !== this.state.rating) {
+      this.setState({ rating: this.state.rating });
+    }
   }
 
   render() {
@@ -69,7 +68,7 @@ class RatingPage extends Component {
 
           <div className="Rating-stars">
               <Rating
-                initialRating={3}
+                initialRating={this.state.rating}
                 emptySymbol={<StarOutlined style={{ fontSize: '50px', color: '#FFDF00', padding: '0 5px'}}/>}
                 fullSymbol={<StarFilled style={{ fontSize: '50px', color: '#FFDF00', padding: '0 5px'}}/>}
                 onChange={(rate) => this.onRatingChange(rate)}

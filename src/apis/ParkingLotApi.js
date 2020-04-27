@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { API_URL } from '../constant/constants';
 
 class ParkingLotApi {
 
@@ -15,7 +16,7 @@ class ParkingLotApi {
     }
 
     static postParkingRatingById(id, score) {
-        const POST_BY_ID_URL = "https://easy-park-backend-dev.herokuapp.com/parking-lots/"+id+"/ratings";
+        const POST_BY_ID_URL = `${API_URL}/parking-lots/${id}/ratings`;
         return axios.post(POST_BY_ID_URL, {score: score});
     }
 }
