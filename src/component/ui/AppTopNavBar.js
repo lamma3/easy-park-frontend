@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { NavBar, Icon } from 'antd-mobile';
 import {  Button } from 'antd';
 import { withRouter } from "react-router-dom";
+import { ScheduleTwoTone } from '@ant-design/icons';
 
 class AppTopNavBar extends Component {
     constructor(props) {
@@ -20,10 +21,10 @@ class AppTopNavBar extends Component {
                     icon={<Icon type="left" />}
                     onLeftClick={() => console.log('onLeftClick')}
                     rightContent={[
-                        <Icon key="1" type="ellipsis" />,
+                        <ScheduleTwoTone key="1" type="ellipsis" onClick = {()=>{this.props.history.push('/history')}}/>,
                     ]}>
                     EasyPark</NavBar>
-                    <Button onClick = {()=>{this.props.history.push('/history')}}>View Booking History</Button>
+               
             </div>
            
         );
