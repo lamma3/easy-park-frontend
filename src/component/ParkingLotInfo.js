@@ -70,9 +70,9 @@ class ParkingLotInfo extends Component {
                         </div>
                         <div class="flex-container">
                             <div class="Info-item"><Text>{this.state.list.address}</Text></div>
-                            <div class="Info-item"><Text>${this.state.list.hourlyRate}</Text></div>
-                            <div class="Info-item"><Text><CarFilled /> {this.state.list.remainCapacity}</Text></div> 
-                            <div class="Info-item"><Text>{this.state.list.rate.toFixed(1)} / 5.0</Text></div> 
+                            <div class="Info-item"><Text>${this.state.list.hourRate}</Text></div>
+                            <div class="Info-item"><Text><CarFilled /> {this.state.list.availableCapacity}</Text></div> 
+                            <div class="Info-item"><Text>{this.state.list.rating.toFixed(1)} / 5.0</Text></div> 
                         </div>
                     </div><div className='Info-button'>
                         <Space size='small'>
