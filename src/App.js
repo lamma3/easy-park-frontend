@@ -9,9 +9,12 @@ import BookingParkingLot from './component/BookingParkingLot';
 import BookingResult from './component/BookingResult';
 import RatingPage from './component/RatingPage';
 import ParkingLotIndex from './component/ParkingLotIndex';
+import BookingHistory from './component/BookingHistory';
+import { Button } from 'antd-mobile';
 
 function App() {
 
+  
   return (
     <div className="App">
       <AppTopNavBar />
@@ -19,6 +22,7 @@ function App() {
         <Route exact path="/" component={ParkingLotIndex}></Route>
         {/* <Route path="/search" component={ParkingLotList} /> */}
         <Route path="/infos/:id" component={ParkingLotInfo} />
+        <Route path="/history" component={BookingHistory} />
         <Route path="/filter" component={FilterBox} />
         <Route path="/booking/:id" component={BookingParkingLot} />
         <Route path="/result/:id" component={BookingResult} />
