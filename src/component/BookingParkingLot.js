@@ -113,8 +113,8 @@ class BookingParkingLot extends Component {
                     </div>
                     <div className='Booking-info-button'>
                         <Space size='small'>
-                            <Button type="primary" onClick={this.goBack}>BACK</Button>
-                            <Button onClick={this.goResult}>BOOK NOW</Button>
+                            <Button type="primary" style={{ background: "grey", borderColor: "grey" }} onClick={this.goBack}>Back</Button>
+                            <Button type="primary" onClick={this.goResult}>Book Now</Button>
                         </Space>
                     </div>
 

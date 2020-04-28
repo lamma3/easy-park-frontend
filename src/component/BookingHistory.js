@@ -92,7 +92,7 @@ class BookingHistory extends Component {
                         ))
                     }
                     </div>   
-                    <Button type="primary" style={{ background: "grey", borderColor: "grey",marginTop:"50px" }} onClick = {this.goBack}> Back </Button>     
+                    <Button type="primary" style={{ background: "grey", borderColor: "grey",marginTop:"40px" }} onClick = {this.goBack}> Back </Button>     
                 </div>
             )
         }
