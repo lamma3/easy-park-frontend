@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../css/ui.css";
-import { Typography, Button, Space } from "antd";
+import { Typography, Button, Space, message } from "antd";
 import ParkingLotApi from '../apis/ParkingLotApi';
 import Loading from "./ui/Loading";
 import { withRouter } from "react-router-dom";
@@ -38,10 +38,10 @@ class RatingPage extends Component {
     ParkingLotApi.postParkingRatingById(parkingLotId, this.state.rating).then((response) => {
       console.log(response.status);
       if(response.status === HTTP_STATUS_CREATED) {
-        alert(THANK_YOU_VOTING_MESSAGE);
+        message.success(THANK_YOU_VOTING_MESSAGE, 3);
         this.props.history.push("/");
       }else {
-        alert(VOTING_ERROR_MESSAGE);
+        message.error(VOTING_ERROR_MESSAGE, 3);
       }
     })
     
