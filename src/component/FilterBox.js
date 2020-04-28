@@ -56,7 +56,7 @@ class FilterBox extends Component {
     }
 
     resetBorderColor(value) {
-        if (document.getElementById('inputMinHourRate') && document.getElementById('inputMaxHourRate')){
+        if (document.getElementById('inputMinHourRate') && document.getElementById('inputMaxHourRate')) {
             if (value === 'error') {
                 document.getElementById("inputMinHourRate").style.borderColor = "red";
                 document.getElementById("inputMaxHourRate").style.borderColor = "red";
@@ -65,7 +65,7 @@ class FilterBox extends Component {
                 document.getElementById("inputMaxHourRate").style.borderColor = "#aaaaaa";
             }
         }
-        
+
     }
 
     render() {
@@ -77,53 +77,61 @@ class FilterBox extends Component {
                         initialValues="small"
                         size="small"
                         onReset={this.handleReset}>
-                        <Form.Item label="Distance">
-                            <Space>Within
+                        <Form.Item label="Distance" style={{ fontWeight: 'bold' }}>
+                            <div style={{ fontWeight: 'normal' }}>
+                                <Space>Within
                                 <select name="distance" id="select_distance" value={this.state.distance} onChange={this.handleChange}>
-                                    <option value="0">No preference</option>
-                                    <option value="400">400 m</option>
-                                    <option value="600">600 m</option>
-                                    <option value="800">800 m</option>
-                                </select>
-                            </Space>
+                                        <option value="0">No preference</option>
+                                        <option value="400">400 m</option>
+                                        <option value="600">600 m</option>
+                                        <option value="800">800 m</option>
+                                    </select>
+                                </Space>
+                            </div>
                         </Form.Item>
-                        <Form.Item label="Hourly Rate">
+                        <Form.Item label="Hourly Rate" style={{ fontWeight: 'bold' }}>
                             <Space>
-                                <select id="select_range" value={this.state.range} onChange={this.handleRangeChange}>
-                                    <option value="false">No preference</option>
-                                    <option value="true">Has preference</option>
-                                </select>
+                                <div style={{ fontWeight: 'normal' }}>
+                                    <select id="select_range" value={this.state.range} onChange={this.handleRangeChange}>
+                                        <option value="false">No preference</option>
+                                        <option value="true">Has preference</option>
+                                    </select>
+                                </div>
 
                                 {this.state.range ?
-                                    <div>
+                                    <div style={{ fontWeight: 'normal' }}>
                                         <Space>
                                             $ < input type="number" id="inputMinHourRate" name="minHourRate" min="0" max="999" onChange={this.handleChange} />
                                             <Text>to</Text>
                                             $ <input type="number" id="inputMaxHourRate" name="maxHourRate" min="0" max="999" onChange={this.handleChange} />
                                         </Space>
                                     </div>
-                                : <div></div>
-                            }
+                                    : <div></div>
+                                }
 
                             </Space>
                         </Form.Item>
-                        <Form.Item label="Electric Car?">
-                            <Space>
-                                <input type="radio" id="hasElectricCar_yes" name="hasElectricCar" value="true" onChange={this.handleChange}></input>
-                                <label htmlFor="yes" >Yes</label>
-                                <input type="radio" id="hasElectricCar_no" name="hasElectricCar" value="false" onChange={this.handleChange}></input>
-                                <label htmlFor="no">No</label>
-                            </Space>
+                        <Form.Item label="Electric Car?" style={{ fontWeight: 'bold' }}>
+                            <div style={{ fontWeight: 'normal' }}>
+                                <Space>
+                                    <input type="radio" id="hasElectricCar_yes" name="hasElectricCar" value="true" onChange={this.handleChange}></input>
+                                    <label htmlFor="yes" >Yes</label>
+                                    <input type="radio" id="hasElectricCar_no" name="hasElectricCar" value="false" onChange={this.handleChange}></input>
+                                    <label htmlFor="no">No</label>
+                                </Space>
+                            </div>
                         </Form.Item>
-                        <Form.Item label="Rating">
-                            <select name="rate" id="select_rate" onChange={this.handleChange}>
-                                <option value="">No preference</option>
-                                <option value="desc">From High to Low</option>
-                                <option value="asc">From Low to High</option>
-                            </select>
+                        <Form.Item label="Rating" style={{ fontWeight: 'bold' }}>
+                            <div style={{ fontWeight: 'normal' }}>
+                                <select name="rate" id="select_rate" onChange={this.handleChange}>
+                                    <option value="">No preference</option>
+                                    <option value="desc">From High to Low</option>
+                                    <option value="asc">From Low to High</option>
+                                </select>
+                            </div>
                         </Form.Item>
-                        <Form.Item>
-                            <Space>
+                        <Form.Item style={{ textAlign: 'center' }}>
+                            <Space size="large">
                                 <Button type="primary" danger onClick={this.handleReset}>
                                     Reset
                                 </Button>
