@@ -5,6 +5,7 @@ import { Typography, Button, Space, Radio } from 'antd';
 import ParkingLotApi from '../apis/ParkingLotApi';
 import Loading from './ui/Loading';
 import { withRouter } from "react-router-dom";
+import { HTTP_STATUS_CREATED, HTTP_STATUS_FAILED } from '../constant/constants';
 
 const { Title, Text } = Typography;
 
@@ -16,7 +17,8 @@ class BookingParkingLot extends Component {
         this.goBack = this.goBack.bind(this);
         this.state = {
             isLoaded: false,
-            value:"normalCar"
+            value:"normalCar",
+            isBookSuccessful: false,
         }
     }
 
@@ -26,14 +28,44 @@ class BookingParkingLot extends Component {
             this.setState({
                 isLoaded: true,
                 list: apiData
-            })
+            });
             
             console.log(this.state);
         })
+
     }
 
+    
     goResult(){
-        this.props.history.push(`/result/${this.props.match.params.id}`);
+        const isElectricCar = this.state.value === "electricCar";
+        const id = this.props.match.params.id;
+        ParkingLotApi.postBookingById(id, isElectricCar).then((response) => {
+            if(response.status === HTTP_STATUS_CREATED) {
+                this.setState(() => {
+                    return {
+                        isBookSuccessful: true,
+                    }
+                }, () => this.props.history.push({
+                    pathname: `/result/${this.props.match.params.id}`,
+                    state: {isBookSuccessful: this.state.isBookSuccessful}
+                })
+                )
+        
+                console.log("API201",this.state);
+                
+            } 
+            if (response.status === HTTP_STATUS_FAILED){
+                this.setState(() => {
+                    return {
+                        isBookSuccessful: false,
+                    }
+                }, ()=> this.props.history.push({
+                    pathname: `/result/${this.props.match.params.id}`,
+                    state: {isBookSuccessful: this.state.isBookSuccessful}
+                })
+                )
+            }
+        })
     }
 
     goBack() {

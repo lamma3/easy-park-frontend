@@ -10,6 +10,7 @@ export const GET_ALL_BY_SEARCH = {
 }
 
 export const HTTP_STATUS_CREATED = 201;
+export const HTTP_STATUS_FAILED = 400;
 export const THANK_YOU_VOTING_MESSAGE = "Thanks for your rating!";
 export const VOTING_ERROR_MESSAGE = "Something wrong with your network, please submit again";
 export const INITIAL_VOTING_STAR_NUMBER = 3;

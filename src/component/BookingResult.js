@@ -4,6 +4,7 @@ import { Typography, Button, Space } from "antd";
 import ParkingLotApi from '../apis/ParkingLotApi';
 import Loading from "./ui/Loading";
 import { withRouter } from "react-router-dom";
+import BookingParkingLot from './BookingParkingLot';
 
 const { Title, Text } = Typography;
 
@@ -13,9 +14,10 @@ class BookingResult extends Component {
 
     this.goBack = this.goBack.bind(this);
     this.goRatingPage = this.goRatingPage.bind(this);
-    this.onRandomBookingResult = this.onRandomBookingResult.bind(this);
+    // this.onRandomBookingResult = this.onRandomBookingResult.bind(this);
     this.state = {
       isLoaded: false,
+      isBookSuccessful: this.props.location.state.isBookSuccessful,
       random_boolean: false,
     };
   }
@@ -23,6 +25,7 @@ class BookingResult extends Component {
   // Added random boolean for fake result
   componentDidMount() {
     window.addEventListener("load", this.onRandomBookingResult);
+    console.log("props",this.props);
 
     ParkingLotApi.getParkingLotById(this.props.match.params.id).then((response) => {
       let apiData = response.data;
@@ -33,10 +36,10 @@ class BookingResult extends Component {
   })
   }
 
-  onRandomBookingResult() {
-    this.setState({ random_boolean: Math.random() >= 0.5 });
-    console.log(this.state.random_boolean);
-  }
+  // onRandomBookingResult() {
+  //   this.setState({ random_boolean: Math.random() >= 0.5 });
+  //   console.log(this.state.random_boolean);
+  // }
 
   goBack() {
     this.props.history.push("/");
@@ -47,9 +50,11 @@ class BookingResult extends Component {
   }
 
   render() {
+    console.log("state",this.state);
+    console.log("props",this.props);
     if (!this.state.isLoaded) {
       return <Loading />;
-  } else if (!this.state.random_boolean) {
+  } else if (this.state.isBookSuccessful) {
       return (
         
         <div className="Info-content">

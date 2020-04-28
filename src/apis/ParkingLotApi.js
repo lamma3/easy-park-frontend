@@ -52,7 +52,11 @@ class ParkingLotApi {
     static getBookingById(id){
         const GET_BOOKING_BY_ID_URL = `${API_URL}/parking-lots/bookings/${id}`;
         return axios.get(GET_BOOKING_BY_ID_URL);
+    }
 
+    static postBookingById(id, isElectricCar) {
+        const POST_BY_ID_URL = `${API_URL}/parking-lots/${id}/bookings`;
+        return axios.post(POST_BY_ID_URL, {isElectricCar: isElectricCar});
     }
 }
 
