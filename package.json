@@ -22,6 +22,7 @@
     "react-dom": "^16.13.1",
     "react-modal": "^3.11.2",
     "react-native-geolocation-service": "^4.0.0",
+    "react-rangeslider": "^2.2.0",
     "react-rating": "^2.0.5",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",

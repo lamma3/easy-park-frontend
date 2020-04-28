@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { NavBar, Icon } from 'antd-mobile';
-import {  Button } from 'antd';
+import { NavBar } from 'antd-mobile';
 import { withRouter } from "react-router-dom";
 import { ScheduleTwoTone, HomeOutlined } from '@ant-design/icons';
 import logo from '../../images/easyparkIcon.png';

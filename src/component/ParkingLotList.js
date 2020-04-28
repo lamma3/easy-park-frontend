@@ -115,21 +115,20 @@ class ParkingLotList extends Component {
                         onGoogleApiLoaded={({ map, maps }) => this.handleApiLoaded(map, maps)}
                     />
                 </div>
-                {/* <GpsLocation /> */}
                 <List className="Parking-lot-list">
-                    {this.state.list.map((item, index) =>
-                        <Item multipleLine key={index} onClick={() => { this.props.history.push(`/infos/${item.id}`); }}>
-                            <ParkingLotBadge number={index + 1} />
-                            <div className='List-content'>{item.name}
-                                <Brief>
-                                    Hourly Rate: $ {item.hourRate}<br />
-                                    Available Capacity: <CarFilled /> {item.availableCapacity} <ThunderboltFilled /> {item.availableChargeCapacity} <br />
-                                    Rating: {item.rating.toFixed(1)}/5.0
-                                </Brief>
-                            </div>
-                            {/* <ParkingLotBadge number={item.availableCapacity} /> */}
-
-                        </Item>
+                    { this.state.list.length=== 0 ?
+                        <Item>No result</Item> :
+                        this.state.list.map((item, index) =>
+                            <Item multipleLine key={index} onClick={() => { this.props.history.push(`/infos/${item.id}`); }}>
+                                <ParkingLotBadge number={index + 1} />
+                                <div className='List-content'>{item.name}
+                                    <Brief>
+                                        Hourly Rate: $ {item.hourRate}<br />
+                                Available Capacity: <CarFilled /> {item.availableCapacity} <ThunderboltFilled /> {item.availableChargeCapacity} <br />
+                                Rating: {item.rating.toFixed(1)}/5.0
+                            </Brief>
+                                </div>
+                            </Item>
                     )}
                 </List>
             </div >
