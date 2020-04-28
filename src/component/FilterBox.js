@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Typography, Space, Button, Form, message } from 'antd';
+import { Slider } from 'react-rangeslider';
 import '../css/ui.css';
+import 'react-rangeslider/lib/index.css'
 import { GET_ALL_BY_SEARCH, FITLER_INPUT_ERROR_MESSAGE } from '../constant/constants';
 
 const { Text } = Typography;
@@ -25,6 +27,7 @@ class FilterBox extends Component {
 
     handleChange(event) {
         this.setState({ [event.target.name]: event.target.value });
+        console.log(this.state);
     }
 
     handleSubmit() {
@@ -32,9 +35,9 @@ class FilterBox extends Component {
             message.error(FITLER_INPUT_ERROR_MESSAGE, 3);
             this.resetBorderColor('error');
 
-        } else { 
+        } else {
             this.props.onUpdate(this.state);
-            this.resetBorderColor(); 
+            this.resetBorderColor();
         }
     }
 
@@ -51,11 +54,11 @@ class FilterBox extends Component {
         this.setState(() => GET_ALL_BY_SEARCH);
     }
 
-    resetBorderColor(value){
-        if (value === 'error'){
+    resetBorderColor(value) {
+        if (value === 'error') {
             document.getElementById("inputMinHourRate").style.borderColor = "red";
             document.getElementById("inputMaxHourRate").style.borderColor = "red";
-        }else {
+        } else {
             document.getElementById("inputMinHourRate").style.borderColor = "#aaaaaa";
             document.getElementById("inputMaxHourRate").style.borderColor = "#aaaaaa";
         }
