@@ -87,14 +87,23 @@
 
 .Filter-box{
   margin-left: 2.5%;   
-  margin-top: 30%;
   padding: 20px;
   display: inline-block;
   width: 95%;
   box-sizing: border-box;
   border-radius: 10px;
   background-color: #FFFFFF;
+  position: fixed;
+  z-index: 1000;
   /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+}
+.Filter-box-bg{
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(0deg, rgba(0,0,0,1) 51%, rgba(255,255,255,0) 100%);
+  position: fixed;
+  z-index: 999;
+  opacity: 0.3;
 }
 
 #inputMinHourRate, #inputMaxHourRate{
@@ -129,6 +138,24 @@
 .Rating-stars {
   padding: 50px 30px;
 }
+
+/* .MapPin-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+
+/* .pin {
+  height: 50px;
+  width: 50px;
+  position: fixed;
+  background-color: #c50;
+  border-radius: 50% 50% 0;
+  transform: rotate(45deg);
+  } */
+
  .spinner {
     margin: 50% auto;
     width: 40px;
