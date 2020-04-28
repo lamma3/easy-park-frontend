@@ -7,6 +7,7 @@ import { withRouter } from "react-router-dom";
 import { StarOutlined, StarFilled } from '@ant-design/icons';
 import Rating from 'react-rating';
 import { HTTP_STATUS_CREATED, THANK_YOU_VOTING_MESSAGE, VOTING_ERROR_MESSAGE, INITIAL_VOTING_STAR_NUMBER} from '../constant/constants';
+import Cookies from 'js-cookie';
 
 const { Title } = Typography;
 
@@ -39,6 +40,9 @@ class RatingPage extends Component {
       // console.log(response.status);
       if(response.status === HTTP_STATUS_CREATED) {
         message.success(THANK_YOU_VOTING_MESSAGE, 3);
+        var bookingList = JSON.parse(Cookies.get("bookingList"));
+         Cookies.set("bookingList",bookingList.filter((id)=>id !== this.props.location.state.bookingId));
+        
         this.props.history.push("/");
       }else {
         message.error(VOTING_ERROR_MESSAGE, 3);

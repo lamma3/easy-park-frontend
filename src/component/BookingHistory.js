@@ -45,8 +45,15 @@ class BookingHistory extends Component {
         };
      
 
-    goRatingPage(id) {
-        this.props.history.push(`/rating/${id}`);
+    goRatingPage(parkingLotId,bookingId) {
+        this.props.history.push({
+            pathname:`/rating/${parkingLotId}`,
+            state: {bookingId:bookingId}
+        });
+
+  
+
+
     }
 
     componentDidMount() {
@@ -96,7 +103,7 @@ class BookingHistory extends Component {
                                 <div className='Info-button'>
                                     <Space size='small'>
                                        
-                                        <Button type="primary"  onClick={() => this.goRatingPage(booking.parkingLot.id)}> Rate</Button>
+                                        <Button type="primary"  onClick={() => this.goRatingPage(booking.parkingLot.id,booking.id)}> Rate</Button>
                                     </Space>
                                 </div>
                             </div>    
