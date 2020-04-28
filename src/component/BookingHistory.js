@@ -50,7 +50,7 @@ class BookingHistory extends Component {
     }
 
     componentDidMount() {
-        let bookingIds = Cookies.get("bookingList") ? JSON.parse(Cookies.get("bookingList")) : [];
+        let bookingIds = Cookies.get("bookingList") ? JSON.parse(Cookies.get("bookingList")).reverse() : [];
         Promise.all(bookingIds.map(id => ParkingLotApi.getBookingById(id).then(response => response.data)))
         .then(bookings => {
             console.log(bookings)
@@ -84,8 +84,12 @@ class BookingHistory extends Component {
                                     <div className="Info-item"><Text>{booking.parkingLot.name}</Text></div>
                                     <div className="Info-title"><Text>Address: </Text></div>
                                     <div className="Info-item"><Text>{booking.parkingLot.address}</Text></div>
+                                    <div className="Info-title"><Text>Booking Type: </Text></div>
+                                    <div className="Info-item"><Text>{booking.isElectricCar===true?"Electric":"Normal"}</Text></div>
+
                                     <div className="Info-title"><Text>Booking Status: </Text></div>
                                     <div className="Info-item" style={{color:"red"}}><b>{booking.status}</b></div>
+
                                 </div>
                                 <div className='Info-button'>
                                     <Space size='small'>
