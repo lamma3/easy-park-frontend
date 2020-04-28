@@ -29,7 +29,6 @@
 .Info-content{
   padding-top: 7em;
   text-align: center;
-
 }
 
 .Info-display-alert {
@@ -247,4 +246,9 @@
     padding: 0;
     overflow: scroll;
     overflow-x: hidden;
+  }
+
+  .Booking-content{
+    padding-top: 2em;
+    text-align: center;
   }

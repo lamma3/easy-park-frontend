@@ -46,7 +46,7 @@ class BookingResult extends Component {
   }
 
   goRatingPage() {
-    this.props.history.push(`/rating/${this.props.match.params.id}`);
+    this.props.history.push("/");
   }
 
   render() {
