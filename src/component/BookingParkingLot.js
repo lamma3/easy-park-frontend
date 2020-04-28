@@ -74,7 +74,7 @@ class BookingParkingLot extends Component {
     }
 
     goBack() {
-        this.props.history.push(`/`);
+        this.props.history.goBack();
     }
 
     onChange = e => {

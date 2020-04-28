@@ -1,16 +1,25 @@
 .Parking-lot-badge{
+    margin-top: 5px;
     width: 1.5em;
     border-radius: 20px;
     color: #FFFFFF;
     text-align: center;
-    float: right;
+    float: left;
 }
 
 @import url(https://fonts.googleapis.com/css?family=Changa);
 .Nav-bar{
     font-family: 'Changa';
-    font-size: 24px;
-    
+    font-size: 24px;    
+}
+
+.Nav-bar-container{
+  height: 80px;    
+}
+
+#nav-title {
+  font-size: 40px;
+  color: #0757ad;
 }
 
 .Booking-summary {
@@ -86,7 +95,8 @@
 }
 
 .Filter-box{
-  margin-left: 2.5%;   
+  margin-left: 2.5%;
+  margin-top: 30%;   
   padding: 20px;
   display: inline-block;
   width: 95%;
@@ -141,7 +151,7 @@
 
 .List-content {
     float: left;
-    margin-left: 65px;
+    margin-left: 15px;
 }
 
 .pin {
@@ -206,4 +216,19 @@
       transform: rotate(-360deg);
       -webkit-transform: rotate(-360deg);
     }
+  }
+
+  .floating-btn{
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: #2ccaa3;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    cursor: pointer;
+    box-shadow: 0px 2px 5px #666;
+    z-index: 1000;
+    text-align: center;
+    font-size: 35px;
   }
