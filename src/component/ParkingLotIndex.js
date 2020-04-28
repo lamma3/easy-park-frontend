@@ -31,6 +31,20 @@ class ParkingLotIndex extends Component {
 
     }
 
+    componentDidMount() {
+        this.getLocation();
+        this.setState(() => {
+            return {
+                distance: 0,
+                minHourRate: 0,
+                maxHourRate: 0,
+                hasElectricCar: false,
+                rate: "",
+                isShowResult: true
+            }
+        });
+    }
+
     getLocation() {
         // if (navigator.geolocation) {
         //   navigator.geolocation.getCurrentPosition((position) => {
