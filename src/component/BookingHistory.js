@@ -29,18 +29,18 @@ class BookingHistory extends Component {
 
     timeStamp2String (time){
         if(!time){
-            console.log("Empty time value");
+            // console.log("Empty time value");
         }
-        console.log(time);
+        // console.log(time);
                 var datetime = new Date(time);
-        console.log(datetime);
+        // console.log(datetime);
                  var year = datetime.getFullYear();
                  var month = datetime.getMonth() + 1;
                  var date = datetime.getDate();
                  var hour = datetime.getHours();
                  var minute = datetime.getMinutes();
         const bookingTime = year + "-" + month + "-" + date + " " + hour + ":" + minute;
-        console.log(bookingTime);
+        // console.log(bookingTime);
                  return bookingTime;
         };
      
@@ -53,13 +53,15 @@ class BookingHistory extends Component {
         let bookingIds = Cookies.get("bookingList") ? JSON.parse(Cookies.get("bookingList")) : [];
         Promise.all(bookingIds.map(id => ParkingLotApi.getBookingById(id).then(response => response.data)))
         .then(bookings => {
-            console.log(bookings)
+            // console.log(bookings)
             this.setState({
                 isLoaded: true,
                 bookings: bookings,
             });
     })
-    .catch(error => console.log(error));
+    .catch(
+        // error => console.log(error)
+    );
     }
 
     render() {

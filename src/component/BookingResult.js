@@ -4,7 +4,7 @@ import { Typography, Button, Space } from "antd";
 import ParkingLotApi from '../apis/ParkingLotApi';
 import Loading from "./ui/Loading";
 import { withRouter } from "react-router-dom";
-import BookingParkingLot from './BookingParkingLot';
+
 
 const { Title, Text } = Typography;
 
@@ -25,7 +25,7 @@ class BookingResult extends Component {
   // Added random boolean for fake result
   componentDidMount() {
     window.addEventListener("load", this.onRandomBookingResult);
-    console.log("props",this.props);
+    // console.log("props",this.props);
 
     ParkingLotApi.getParkingLotById(this.props.match.params.id).then((response) => {
       let apiData = response.data;
@@ -50,8 +50,8 @@ class BookingResult extends Component {
   }
 
   render() {
-    console.log("state",this.state);
-    console.log("props",this.props);
+    // console.log("state",this.state);
+    // console.log("props",this.props);
     if (!this.state.isLoaded) {
       return <Loading />;
   } else if (this.state.isBookSuccessful) {
