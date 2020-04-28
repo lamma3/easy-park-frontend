@@ -81,7 +81,7 @@ class ParkingLotInfo extends Component {
                         <div className="Info-item"><Text>{this.state.list.rating.toFixed(1)} / 5.0</Text></div> 
                     </div>
                     <div className='Info-button'>
-                        <Space size='small'>
+                        <Space size='large'>
                             <Button type="primary" onClick={this.goBack}>Back</Button>
                             <Button type={this.state.isDisabledBooking} onClick={this.state.isOnClickDisabled}>Reserve a Space</Button>
                         </Space>

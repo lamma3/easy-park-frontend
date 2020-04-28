@@ -63,8 +63,8 @@ class RatingPage extends Component {
   } else if (!this.state.random_boolean) {
       return (
         <div className="Info-content">
-          <Title level={2}>How do you think your experience</Title>
-          <Title level={2}>in {this.state.list.name} ?</Title>
+          <Title level={4}>How do you think your experience</Title>
+          <Title level={4}>in {this.state.list.name} ?</Title>
 
           <div className="Rating-stars">
               <Rating
