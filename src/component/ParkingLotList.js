@@ -6,7 +6,7 @@ import Loading from './ui/Loading';
 import { withRouter } from "react-router-dom";
 import GoogleMapReact from 'google-map-react';
 import { GOOGLE_MAP_API_KEY, FAKE_LOCATION } from '../constant/constants';
-
+import { CarFilled, ThunderboltFilled } from '@ant-design/icons';
 
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -119,12 +119,14 @@ class ParkingLotList extends Component {
                 <List className="Parking-lot-list">
                     {this.state.list.map((item, index) =>
                         <Item multipleLine key={index} onClick={() => { this.props.history.push(`/infos/${item.id}`); }}>
-                            {/* <div className='pin'></div> */}
+                            <ParkingLotBadge number={index + 1} />
                             <div className='List-content'>{item.name}
-                            <Brief>
-                                Hourly Rate: $ {item.hourRate} <br />
-                                Rating: {item.rating.toFixed(1)}/5.0
-                            </Brief></div>
+                                <Brief>
+                                    Hourly Rate: $ {item.hourRate}<br />
+                                    Available Capacity: <CarFilled /> {item.availableCapacity} <ThunderboltFilled /> {item.availableChargeCapacity} <br />
+                                    Rating: {item.rating.toFixed(1)}/5.0
+                                </Brief>
+                            </div>
                             {/* <ParkingLotBadge number={item.availableCapacity} /> */}
 
                         </Item>

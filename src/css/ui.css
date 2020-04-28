@@ -1,9 +1,10 @@
 .Parking-lot-badge{
+    margin-top: 5px;
     width: 1.5em;
     border-radius: 20px;
     color: #FFFFFF;
     text-align: center;
-    float: right;
+    float: left;
 }
 
 @import url(https://fonts.googleapis.com/css?family=Changa);
@@ -141,7 +142,7 @@
 
 .List-content {
     float: left;
-    margin-left: 65px;
+    margin-left: 15px;
 }
 
 .pin {
