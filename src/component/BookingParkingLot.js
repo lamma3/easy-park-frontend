@@ -54,17 +54,16 @@ class BookingParkingLot extends Component {
                 console.log("API201",this.state);
                 
             } 
-            if (response.status === HTTP_STATUS_FAILED){
-                this.setState(() => {
-                    return {
-                        isBookSuccessful: false,
-                    }
-                }, ()=> this.props.history.push({
-                    pathname: `/result/${this.props.match.params.id}`,
-                    state: {isBookSuccessful: this.state.isBookSuccessful}
-                })
-                )
-            }
+        }).catch((err) => {
+            this.setState(() => {
+                return {
+                    isBookSuccessful: false,
+                }
+            }, ()=> this.props.history.push({
+                pathname: `/result/${this.props.match.params.id}`,
+                state: {isBookSuccessful: this.state.isBookSuccessful}
+            })
+            )
         })
     }
 
