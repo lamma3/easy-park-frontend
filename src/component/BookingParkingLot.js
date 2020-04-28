@@ -6,7 +6,7 @@ import ParkingLotApi from '../apis/ParkingLotApi';
 import Loading from './ui/Loading';
 import { withRouter } from "react-router-dom";
 import { HTTP_STATUS_CREATED, HTTP_STATUS_FAILED } from '../constant/constants';
-
+import Cookies from 'js-cookie';
 const { Title, Text } = Typography;
 
 class BookingParkingLot extends Component {
@@ -19,6 +19,8 @@ class BookingParkingLot extends Component {
             isLoaded: false,
             value:"normalCar",
             isBookSuccessful: false,
+            booking: [],
+            bookingList: []
         }
     }
 
@@ -44,6 +46,8 @@ class BookingParkingLot extends Component {
                 this.setState(() => {
                     return {
                         isBookSuccessful: true,
+                        booking:response.data
+
                     }
                 }, () => this.props.history.push({
                     pathname: `/result/${this.props.match.params.id}`,
@@ -52,7 +56,9 @@ class BookingParkingLot extends Component {
                 )
         
                 console.log("API201",this.state);
-                
+                console.log(this.state.booking);
+                Cookies.set("Booking",this.state.booking.id);
+                Cookies.set("BookingList",this.state.bookingList);
             } 
         }).catch((err) => {
             this.setState(() => {

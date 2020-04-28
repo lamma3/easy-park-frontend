@@ -3,6 +3,8 @@ import { withRouter } from "react-router-dom";
 import '../css/ui.css';
 import { Typography, Button, Space } from 'antd';
 import ParkingLotApi from '../apis/ParkingLotApi';
+import Cookies from 'js-cookie';
+
 const { Title, Text } = Typography;
 
 class BookingHistory extends Component {
@@ -35,7 +37,7 @@ goRatingPage() {
 
 
   componentDidMount() {
-    ParkingLotApi.getBookingById(1).then((response) => {
+    ParkingLotApi.getBookingById(Cookies.get("Booking")).then((response) => {
         let apiData = response.data;
         this.setState({
             isLoaded: true,
