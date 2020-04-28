@@ -95,7 +95,8 @@
 }
 
 .Filter-box{
-  margin-left: 2.5%;   
+  margin-left: 2.5%;
+  margin-top: 30%;   
   padding: 20px;
   display: inline-block;
   width: 95%;
@@ -215,4 +216,19 @@
       transform: rotate(-360deg);
       -webkit-transform: rotate(-360deg);
     }
+  }
+
+  .floating-btn{
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: #2ccaa3;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    cursor: pointer;
+    box-shadow: 0px 2px 5px #666;
+    z-index: 1000;
+    text-align: center;
+    font-size: 35px;
   }

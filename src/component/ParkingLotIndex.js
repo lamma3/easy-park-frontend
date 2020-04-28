@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Button } from 'antd';
-import { FilterOutlined } from '@ant-design/icons';
+import { FilterOutlined, CloseOutlined } from '@ant-design/icons';
 import '../css/ui.css';
 import PropTypes from 'prop-types';
 import FilterBox from './FilterBox';
@@ -87,8 +86,13 @@ class ParkingLotIndex extends Component {
         return (
             <div>
                 <div>
-                    <input className="Search-box" type="text" placeholder="Search" />
-                    <Button onClick={this.onOpenChange}><FilterOutlined /></Button>
+                    <div className="floating-btn" onClick={this.onOpenChange}>
+                        {
+                            this.state.open ?
+                                <CloseOutlined /> : <FilterOutlined />
+                        }
+
+                    </div>
                 </div>
                 {
                     this.state.open ?
