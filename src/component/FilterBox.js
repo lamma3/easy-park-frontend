@@ -15,19 +15,19 @@ class FilterBox extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleReset = this.handleReset.bind(this);
+        this.handleRangeChange = this.handleRangeChange.bind(this);
 
         this.state = GET_ALL_BY_SEARCH;
 
     }
 
     componentDidMount() {
-        document.getElementById("inputMinHourRate").value = 0;
-        document.getElementById("inputMaxHourRate").value = 0;
+        // document.getElementById("inputMinHourRate").value = 0;
+        // document.getElementById("inputMaxHourRate").value = 0;
     }
 
     handleChange(event) {
         this.setState({ [event.target.name]: event.target.value });
-        console.log(this.state);
     }
 
     handleSubmit() {
@@ -42,10 +42,7 @@ class FilterBox extends Component {
     }
 
     handleReset() {
-        console.log(document.getElementById("inputMinHourRate").defaultValue);
         document.getElementById("select_distance").selectedIndex = 0;
-        document.getElementById("inputMinHourRate").value = 0;
-        document.getElementById("inputMaxHourRate").value = 0;
         document.getElementById("hasElectricCar_yes").checked = false;
         document.getElementById("hasElectricCar_no").checked = false;
         document.getElementById("select_rate").selectedIndex = 0;
@@ -54,14 +51,21 @@ class FilterBox extends Component {
         this.setState(() => GET_ALL_BY_SEARCH);
     }
 
+    handleRangeChange() {
+        this.setState((prevState) => { return { range: !prevState.range } });
+    }
+
     resetBorderColor(value) {
-        if (value === 'error') {
-            document.getElementById("inputMinHourRate").style.borderColor = "red";
-            document.getElementById("inputMaxHourRate").style.borderColor = "red";
-        } else {
-            document.getElementById("inputMinHourRate").style.borderColor = "#aaaaaa";
-            document.getElementById("inputMaxHourRate").style.borderColor = "#aaaaaa";
+        if (document.getElementById('inputMinHourRate') && document.getElementById('inputMaxHourRate')){
+            if (value === 'error') {
+                document.getElementById("inputMinHourRate").style.borderColor = "red";
+                document.getElementById("inputMaxHourRate").style.borderColor = "red";
+            } else {
+                document.getElementById("inputMinHourRate").style.borderColor = "#aaaaaa";
+                document.getElementById("inputMaxHourRate").style.borderColor = "#aaaaaa";
+            }
         }
+        
     }
 
     render() {
@@ -85,9 +89,22 @@ class FilterBox extends Component {
                         </Form.Item>
                         <Form.Item label="Hourly Rate">
                             <Space>
-                                $ <input type="number" id="inputMinHourRate" name="minHourRate" min="0" max="999" onChange={this.handleChange} />
-                                <Text>to</Text>
-                                $ <input type="number" id="inputMaxHourRate" name="maxHourRate" min="0" max="999" onChange={this.handleChange} />
+                                <select id="select_range" value={this.state.range} onChange={this.handleRangeChange}>
+                                    <option value="false">No preference</option>
+                                    <option value="true">Has preference</option>
+                                </select>
+
+                                {this.state.range ?
+                                    <div>
+                                        <Space>
+                                            $ < input type="number" id="inputMinHourRate" name="minHourRate" min="0" max="999" onChange={this.handleChange} />
+                                            <Text>to</Text>
+                                            $ <input type="number" id="inputMaxHourRate" name="maxHourRate" min="0" max="999" onChange={this.handleChange} />
+                                        </Space>
+                                    </div>
+                                : <div></div>
+                            }
+
                             </Space>
                         </Form.Item>
                         <Form.Item label="Electric Car?">

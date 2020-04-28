@@ -6,7 +6,8 @@ export const GET_ALL_BY_SEARCH = {
     minHourRate: 0,
     maxHourRate: 0,
     hasElectricCar: null,
-    rate: null
+    rate: null,
+    range: false
 }
 
 export const HTTP_STATUS_CREATED = 201;
