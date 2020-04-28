@@ -138,6 +138,24 @@
 .Rating-stars {
   padding: 50px 30px;
 }
+
+/* .MapPin-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+
+/* .pin {
+  height: 50px;
+  width: 50px;
+  position: fixed;
+  background-color: #c50;
+  border-radius: 50% 50% 0;
+  transform: rotate(45deg);
+  } */
+
  .spinner {
     margin: 50% auto;
     width: 40px;

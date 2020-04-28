@@ -7,7 +7,9 @@ import { withRouter } from "react-router-dom";
 import GoogleMapReact from 'google-map-react';
 import { GOOGLE_MAP_API_KEY, FAKE_LOCATION } from '../constant/constants';
 
+
 const Item = List.Item;
+const Brief = Item.Brief;
 
 class ParkingLotList extends Component {
 
@@ -43,7 +45,6 @@ class ParkingLotList extends Component {
 
     showResult(){
         ParkingLotApi.getAllParkingLotList(this.props.distance,
-            this.props.latitude, this.props.longitude,
             this.props.minHourRate, this.props.maxHourRate, 
             this.props.hasElectricCar, this.props.rate)
         .then((response) => {
@@ -117,8 +118,13 @@ class ParkingLotList extends Component {
                 <List className="Parking-lot-list">
                     {this.state.list.map((item, index) =>
                         <Item multipleLine key={index} onClick={() => {this.props.history.push(`/infos/${item.id}`);}}>
+                            <div className='pin'></div>
                             {item.name}
                             <ParkingLotBadge number={item.availableCapacity} />
+                            <Brief>
+                                Hourly Rate: $ {item.hourRate} <br/>
+                                Rating: {item.rating.toFixed(1)}/5.0
+                            </Brief>
                         </Item>
                     )}
                 </List>
