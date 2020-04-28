@@ -5,7 +5,9 @@ const queryString = require('query-string');
 
 class ParkingLotApi {
   static getAllParkingLotList(
-    distance,
+    distance, 
+    latitude, 
+    longitude,
     minHourRate,
     maxHourRate,
     hasElectricCar,
@@ -17,6 +19,8 @@ class ParkingLotApi {
 
     if (distance !== 0) {
       parsed["distance"] = distance;
+      parsed['deviceLatitude'] = latitude;
+      parsed['deviceLongitude'] = longitude;
     }
 
     if (minHourRate !== 0) {

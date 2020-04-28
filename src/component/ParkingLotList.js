@@ -19,7 +19,7 @@ class ParkingLotList extends Component {
         this.showResult = this.showResult.bind(this);
 
         this.state = {
-            isLoaded: false,
+            isLoaded: this.props.isLoaded,
             list: [],
             zoom: 15,
             center: FAKE_LOCATION,
@@ -43,22 +43,23 @@ class ParkingLotList extends Component {
         this.showResult();
     }
 
-    showResult(){
+    showResult() {
         ParkingLotApi.getAllParkingLotList(this.props.distance,
-            this.props.minHourRate, this.props.maxHourRate, 
+            this.props.latitude, this.props.longitude,
+            this.props.minHourRate, this.props.maxHourRate,
             this.props.hasElectricCar, this.props.rate)
-        .then((response) => {
-            let apiData = response.data;
-            this.setState({
-                isLoaded: true,
-                list: apiData
+            .then((response) => {
+                let apiData = response.data;
+                this.setState({
+                    isLoaded: true,
+                    list: apiData
+                })
             })
-        })
     }
 
     handleApiLoaded(map, maps) {
         this.setState(() => ({
-            googleApiReference: {map, maps}
+            googleApiReference: { map, maps }
         }));
     }
 
@@ -89,21 +90,21 @@ class ParkingLotList extends Component {
                     lat: place.latitude,
                     lng: place.longitude,
                 },
-                label: {color: "white", text: (index+1).toString()},
+                label: { color: "white", text: (index + 1).toString() },
                 map,
             }));
         });
 
         // update state
-        this.setState(() => ({markers:markers}));
+        this.setState(() => ({ markers: markers }));
     }
 
     render() {
         const { center } = this.state;
 
-        if (!this.state.isLoaded){
-            return <Loading />; 
-        }else return (
+        if (!this.state.isLoaded) {
+            return <Loading />;
+        } else return (
             <div>
                 <div style={{ height: '50vh', width: '100%' }}>
                     <GoogleMapReact
@@ -117,14 +118,15 @@ class ParkingLotList extends Component {
                 {/* <GpsLocation /> */}
                 <List className="Parking-lot-list">
                     {this.state.list.map((item, index) =>
-                        <Item multipleLine key={index} onClick={() => {this.props.history.push(`/infos/${item.id}`);}}>
-                            <div className='pin'></div>
-                            {item.name}
-                            <ParkingLotBadge number={item.availableCapacity} />
+                        <Item multipleLine key={index} onClick={() => { this.props.history.push(`/infos/${item.id}`); }}>
+                            {/* <div className='pin'></div> */}
+                            <div className='List-content'>{item.name}
                             <Brief>
-                                Hourly Rate: $ {item.hourRate} <br/>
+                                Hourly Rate: $ {item.hourRate} <br />
                                 Rating: {item.rating.toFixed(1)}/5.0
-                            </Brief>
+                            </Brief></div>
+                            {/* <ParkingLotBadge number={item.availableCapacity} /> */}
+
                         </Item>
                     )}
                 </List>

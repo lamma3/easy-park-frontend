@@ -95,6 +95,7 @@ class ParkingLotIndex extends Component {
                             maxHourRate={this.state.maxHourRate}
                             hasElectricCar={this.state.hasElectricCar}
                             rate={this.state.rate}
+                            isLoad={false}
                         /> : <div></div>
                 }
             </div >

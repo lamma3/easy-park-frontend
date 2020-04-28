@@ -139,22 +139,19 @@
   padding: 50px 30px;
 }
 
-/* .MapPin-container {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-} */
+.List-content {
+    float: left;
+    margin-left: 65px;
+}
 
-/* .pin {
-  height: 50px;
-  width: 50px;
-  position: fixed;
+.pin {
+  height: 35px;
+  width: 35px;
+  position: absolute;
   background-color: #c50;
   border-radius: 50% 50% 0;
-  transform: rotate(45deg);
-  } */
+  transform: scaleY(1.4) rotate(45deg);
+  }
 
  .spinner {
     margin: 50% auto;
