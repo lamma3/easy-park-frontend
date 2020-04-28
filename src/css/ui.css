@@ -232,3 +232,11 @@
     text-align: center;
     font-size: 35px;
   }
+
+  .History-list-content{
+    height: 70vh;
+    line-height: 2em;
+    padding: 0;
+    overflow: scroll;
+    overflow-x: hidden;
+  }

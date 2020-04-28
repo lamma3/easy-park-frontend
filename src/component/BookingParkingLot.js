@@ -20,7 +20,8 @@ class BookingParkingLot extends Component {
             value:"normalCar",
             isBookSuccessful: false,
             booking: [],
-            bookingList: []
+            bookingList:[]
+
         }
     }
 
@@ -31,9 +32,9 @@ class BookingParkingLot extends Component {
                 isLoaded: true,
                 list: apiData
             });
-            
             console.log(this.state);
         })
+        Cookies.set("bookingPage","");
 
     }
 
@@ -43,10 +44,13 @@ class BookingParkingLot extends Component {
         const id = this.props.match.params.id;
         ParkingLotApi.postBookingById(id, isElectricCar).then((response) => {
             if(response.status === HTTP_STATUS_CREATED) {
+
                 this.setState(() => {
                     return {
                         isBookSuccessful: true,
-                        booking:response.data
+                        booking:response.data,
+                        // bookingList: this.state.bookingList.push(response.data.id)
+
 
                     }
                 }, () => this.props.history.push({
@@ -54,11 +58,18 @@ class BookingParkingLot extends Component {
                     state: {isBookSuccessful: this.state.isBookSuccessful}
                 })
                 )
-        
-                console.log("API201",this.state);
-                console.log(this.state.booking);
-                Cookies.set("Booking",this.state.booking.id);
-                Cookies.set("BookingList",this.state.bookingList);
+                // console.log("API201",this.state);
+                Cookies.set("booking",this.state.booking.id);
+                if(!Cookies.get("bookingList")){
+                    Cookies.set("bookingList",[this.state.booking.id]);
+                }
+                else{
+                   var bookingRecord = JSON.parse(Cookies.get("bookingList"));
+                    bookingRecord.push(this.state.booking.id);
+                    Cookies.set("bookingList",bookingRecord);
+                }
+               
+                // console.log()
             } 
         }).catch((err) => {
             this.setState(() => {
