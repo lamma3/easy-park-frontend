@@ -28,10 +28,21 @@ class BookingHistory extends Component {
     }
 
     timeStamp2String (time){
-        var datetime = new Date(time);
-        return datatime.toString();
-                
-    }
+        if(!time){
+            console.log("Empty time value");
+        }
+        console.log(time);
+                var datetime = new Date(time);
+        console.log(datetime);
+                 var year = datetime.getFullYear();
+                 var month = datetime.getMonth() + 1;
+                 var date = datetime.getDate();
+                 var hour = datetime.getHours();
+                 var minute = datetime.getMinutes();
+        const bookingTime = year + "-" + month + "-" + date + " " + hour + ":" + minute;
+        console.log(bookingTime);
+                 return bookingTime;
+        };
      
 
     goRatingPage(id) {
