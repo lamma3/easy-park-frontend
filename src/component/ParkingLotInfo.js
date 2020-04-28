@@ -45,7 +45,7 @@ class ParkingLotInfo extends Component {
     }
     
     isParkingLotFull(){
-        const buttonType = this.state.list.availableCapacity === 0 ? 'primary disabled' : '';
+        const buttonType = this.state.list.availableCapacity === 0 ? 'primary disabled' : 'primary';
         const isOnClickDisabled = this.state.list.availableCapacity === 0 && this.state.list.availableChargeCapacity === 0 ? '' : this.goBookingPage;
         this.setState({
             isDisabledBooking: buttonType,
@@ -82,7 +82,7 @@ class ParkingLotInfo extends Component {
                     </div>
                     <div className='Info-button'>
                         <Space size='large'>
-                            <Button type="primary" onClick={this.goBack}>Back</Button>
+                            <Button type="primary" style={{ background: "grey", borderColor: "grey" }} onClick={this.goBack}>Back</Button>
                             <Button type={this.state.isDisabledBooking} onClick={this.state.isOnClickDisabled}>Reserve a Space</Button>
                         </Space>
                     </div>

@@ -53,7 +53,8 @@ class BookingHistory extends Component {
                     <div className= 'History-list-content'>
                     
                     {this.state.bookings.length <= 0 ?
-                        <List.Item>No booking history</List.Item> :
+                        <div className='Display-card'>No booking history</div>
+                        :
                         this.state.bookings.map( (booking) =>(
                             <div key={booking.id} className='Display-card' style={{marginBottom:"15px"}}>
                                 <Title level={3}>Booking History</Title>
@@ -71,8 +72,8 @@ class BookingHistory extends Component {
                                 </div>
                                 <div className='Info-button'>
                                     <Space size='small'>
-                                        <Button type="primary" onClick={this.goBack}>Back</Button>
-                                        <Button onClick={() => this.goRatingPage(booking.parkingLot.id)}> Rate</Button>
+                                        <Button type="primary" style={{ background: "grey", borderColor: "grey" }} onClick={this.goBack}>Back</Button>
+                                        <Button type="primary" onClick={() => this.goRatingPage(booking.parkingLot.id)}> Rate</Button>
                                     </Space>
                                 </div>
                             </div>    
