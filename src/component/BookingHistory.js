@@ -15,7 +15,7 @@ class BookingHistory extends Component {
 
         this.goBack = this.goBack.bind(this);
         this.goRatingPage = this.goRatingPage.bind(this);
-
+        this.timeStamp2String = this.timeStamp2String.bind(this);
         this.state = {
         isLoaded: false,
         bookings: [],
@@ -26,6 +26,19 @@ class BookingHistory extends Component {
     goBack() {
         this.props.history.push('/');
     }
+
+    timeStamp2String (time){
+                var datetime = new Date();
+                 datetime.setTime(time);
+                 var year = datetime.getFullYear();
+                 var month = datetime.getMonth() + 1;
+                 var date = datetime.getDate();
+                 var hour = datetime.getHours();
+                 var minute = datetime.getMinutes();
+
+                 return year + "-" + month + "-" + date+" "+hour+":"+minute;
+        };
+     
 
     goRatingPage(id) {
         this.props.history.push(`/rating/${id}`);
@@ -58,8 +71,8 @@ class BookingHistory extends Component {
                             <div key={booking.id} className='Display-card' style={{marginBottom:"15px"}}>
                                 <Title level={3}>Booking History</Title>
                                 <div className="Display-container">
-                                    <div className="Info-title"><Text>Booking Date: </Text></div>
-                                    <div className="Info-item"><Text>{booking.utilTimestamp}</Text></div>
+                                    <div className="Info-title" ><Text>Booking Date: </Text></div>
+                                    <div className="Info-item"><Text>{this.timeStamp2String(booking.utilTimestamp)}</Text></div>
                                     <div className="Info-title"><Text>Booking ID: </Text></div>
                                     <div className="Info-item"><Text>{booking.id}</Text></div>
                                     <div className="Info-title"><Text>Name: </Text></div>
@@ -67,18 +80,19 @@ class BookingHistory extends Component {
                                     <div className="Info-title"><Text>Address: </Text></div>
                                     <div className="Info-item"><Text>{booking.parkingLot.address}</Text></div>
                                     <div className="Info-title"><Text>Booking Status: </Text></div>
-                                    <div className="Info-item"><Text>{booking.status}</Text></div>
+                                    <div className="Info-item" style={{color:"red"}}><b>{booking.status}</b></div>
                                 </div>
                                 <div className='Info-button'>
                                     <Space size='small'>
-                                        <Button type="primary" onClick={this.goBack}>Back</Button>
-                                        <Button onClick={() => this.goRatingPage(booking.parkingLot.id)}> Rate</Button>
+                                       
+                                        <Button type="primary"  onClick={() => this.goRatingPage(booking.parkingLot.id)}> Rate</Button>
                                     </Space>
                                 </div>
                             </div>    
                         ))
                     }
-                    </div>         
+                    </div>   
+                    <Button type="primary" style={{ background: "grey", borderColor: "grey",marginTop:"50px" }} onClick = {this.goBack}> Back </Button>     
                 </div>
             )
         }
