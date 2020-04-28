@@ -10,8 +10,16 @@
 @import url(https://fonts.googleapis.com/css?family=Changa);
 .Nav-bar{
     font-family: 'Changa';
-    font-size: 24px;
-    
+    font-size: 24px;    
+}
+
+.Nav-bar-container{
+  height: 80px;    
+}
+
+#nav-title {
+  font-size: 40px;
+  color: #0757ad;
 }
 
 .Booking-summary {

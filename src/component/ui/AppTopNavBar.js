@@ -3,6 +3,7 @@ import { NavBar, Icon } from 'antd-mobile';
 import {  Button } from 'antd';
 import { withRouter } from "react-router-dom";
 import { ScheduleTwoTone, HomeOutlined } from '@ant-design/icons';
+import logo from '../../images/easyparkIcon.png';
 
 class AppTopNavBar extends Component {
     constructor(props) {
@@ -16,13 +17,15 @@ class AppTopNavBar extends Component {
     render() {
         return (
             <div className = "Nav-bar" >    
-                <NavBar
+                <NavBar className = "Nav-bar-container"
                     mode="light"
-                    icon={<HomeOutlined onClick={() => {this.props.history.push('/')}} />}
+                    icon={<HomeOutlined style={{ fontSize: '30px' }} onClick={() => {this.props.history.push('/')}} />}
                     rightContent={[
-                        <ScheduleTwoTone key="1" type="ellipsis" onClick = {()=>{this.props.history.push('/history')}}/>,
+                        <ScheduleTwoTone key="1" type="ellipsis" style={{ fontSize: '30px' }} onClick = {()=>{this.props.history.push('/history')}}/>,
                     ]}>
-                    EasyPark</NavBar>
+                    <div id="nav-title">
+                        <img src={logo} height="40px" />
+                        EasyPark</div></NavBar>
                
             </div>
            
