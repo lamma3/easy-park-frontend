@@ -5,7 +5,7 @@ import { Typography, Button, Space, Radio } from 'antd';
 import ParkingLotApi from '../apis/ParkingLotApi';
 import Loading from './ui/Loading';
 import { withRouter } from "react-router-dom";
-import { HTTP_STATUS_CREATED, HTTP_STATUS_FAILED } from '../constant/constants';
+import { HTTP_STATUS_CREATED } from '../constant/constants';
 import Cookies from 'js-cookie';
 const { Title, Text } = Typography;
 
@@ -32,7 +32,7 @@ class BookingParkingLot extends Component {
                 isLoaded: true,
                 list: apiData
             });
-            console.log(this.state);
+            // console.log(this.state);
         })
         Cookies.set("bookingPage","");
 
@@ -89,7 +89,7 @@ class BookingParkingLot extends Component {
     }
 
     onChange = e => {
-        console.log('radio checked', e.target.value);
+        // console.log('radio checked', e.target.value);
         this.setState({
             value: e.target.value,
         });

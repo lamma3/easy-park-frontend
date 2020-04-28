@@ -8,7 +8,7 @@ import { StarOutlined, StarFilled } from '@ant-design/icons';
 import Rating from 'react-rating';
 import { HTTP_STATUS_CREATED, THANK_YOU_VOTING_MESSAGE, VOTING_ERROR_MESSAGE, INITIAL_VOTING_STAR_NUMBER} from '../constant/constants';
 
-const { Title, Text } = Typography;
+const { Title } = Typography;
 
 class RatingPage extends Component {
   constructor(props, context) {
@@ -36,7 +36,7 @@ class RatingPage extends Component {
   goBack() {
     const parkingLotId = this.props.match.params.id;
     ParkingLotApi.postParkingRatingById(parkingLotId, this.state.rating).then((response) => {
-      console.log(response.status);
+      // console.log(response.status);
       if(response.status === HTTP_STATUS_CREATED) {
         message.success(THANK_YOU_VOTING_MESSAGE, 3);
         this.props.history.push("/");

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { FilterOutlined, CloseOutlined } from '@ant-design/icons';
 import '../css/ui.css';
-import PropTypes from 'prop-types';
 import FilterBox from './FilterBox';
 import ParkingLotList from './ParkingLotList';
 import { FAKE_LOCATION } from '../constant/constants';
