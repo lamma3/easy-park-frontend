@@ -19,15 +19,13 @@ class BookingHistory extends Component {
 
      this.state = {
         isLoaded: false,
-        booking: [],
+        bookings: [],
         parkingLot: [],
-        updateBookingInfoList: []
-    
      }
  }
 
 
- 
+
  goBack() {
     this.props.history.push('/');
 }
@@ -39,32 +37,17 @@ goRatingPage(id) {
 
 
   componentDidMount() {
-     var bookingArray = JSON.parse( Cookies.get("bookingList"))
-     var bookingInfoList = [];
-     console.log("before api");
-     Promise.all(bookingArray.map((booking)=>( ParkingLotApi.getBookingById(booking)).then((response) => {
-        bookingInfoList.push(response.data);
-    })));
-    this.setState({
-        isLoaded: true,
-        updateBookingInfoList: bookingInfoList
-    },()=>{
-    console.log(this.state.updateBookingInfoList)}) 
-     console.log("testing by updatebookinfolist"); 
-    // ParkingLotApi.getBookingById(Cookies.get("booking")).then((response) => {
-    //     let apiData = response.data;
-    //     this.setState({
-    //         isLoaded: true,
-    //         booking: apiData,
-    //         parkingLot: apiData.parkingLot
-
-    //     },()=>{
-    //     console.log(this.state.booking)}) 
-    // })
-    console.log("after api");
-
+    let bookingIds = Cookies.get("bookingList") ? JSON.parse(Cookies.get("bookingList")) : [];
+    Promise.all(bookingIds.map(id => ParkingLotApi.getBookingById(id).then(response => response.data)))
+        .then(bookings => {
+            console.log(bookings)
+            this.setState({
+                isLoaded: true,
+                bookings: bookings,
+            });
+        })
+        .catch(error => console.log(error));
 }
-
 
 
     render() {
@@ -75,19 +58,19 @@ goRatingPage(id) {
             <div className='Info-content'>
             <div className= 'History-list-content'>
          
-            {this.state.updateBookingInfoList.map( (booking) =>(
+            {this.state.bookings.map( (booking) =>(
 
-         <div className='Display-card' style={{marginBottom:"15px"}}>
+         <div key={booking.id} className='Display-card' style={{marginBottom:"15px"}}>
                  <Title level={3}>Booking History</Title>
-                 <div class="Display-container">
-                 <div class="Info-title"><Text>Booking ID: </Text></div>
-                <div class="Info-item"><Text>{booking.id}</Text></div>
-                <div class="Info-title"><Text>Name: </Text></div>
-                <div class="Info-item"><Text>{booking.parkingLot.name}</Text></div>
-                <div class="Info-title"><Text>Address: </Text></div>
-                <div class="Info-item"><Text>{booking.parkingLot.address}</Text></div>
-                <div class="Info-title"><Text>Booking Status: </Text></div>
-                <div class="Info-item"><Text>{booking.status}</Text></div>
+                 <div className="Display-container">
+                 <div className="Info-title"><Text>Booking ID: </Text></div>
+                <div className="Info-item"><Text>{booking.id}</Text></div>
+                <div className="Info-title"><Text>Name: </Text></div>
+                <div className="Info-item"><Text>{booking.parkingLot.name}</Text></div>
+                <div className="Info-title"><Text>Address: </Text></div>
+                <div className="Info-item"><Text>{booking.parkingLot.address}</Text></div>
+                <div className="Info-title"><Text>Booking Status: </Text></div>
+                <div className="Info-item"><Text>{booking.status}</Text></div>
                 </div>
                  <div className='Info-button'>
                         <Space size='small'>
