@@ -70,6 +70,11 @@
 
 .Parking-lot-list{
   margin: 10px;
+  height: 18em;
+  line-height: 2em;
+  padding: 0;
+  overflow: scroll;
+  overflow-x: hidden;
 }
 
 #Booking-title{
