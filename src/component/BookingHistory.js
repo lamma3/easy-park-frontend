@@ -80,7 +80,7 @@ class BookingHistory extends Component {
                     <div className= 'History-list-content'>
                     
                     {this.state.bookings.length <= 0 ?
-                        <List.Item>No booking history</List.Item> :
+                        <div className='Display-card'>No booking history</div> :
                         this.state.bookings.map( (booking) =>(
                             <div key={booking.id} className='Display-card' style={{marginBottom:"15px"}}>
                                 <Title level={3}>Booking History</Title>
