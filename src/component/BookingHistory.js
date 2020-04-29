@@ -103,7 +103,7 @@ class BookingHistory extends Component {
                                 <div className='Info-button'>
                                     <Space size='small'>
                                        
-                                        <Button type="primary"  onClick={() => this.goRatingPage(booking.parkingLot.id,booking.id)}> Rate</Button>
+                                        <Button type="primary" disabled={booking.status==="COMPLETE"?false:true}  onClick={() => this.goRatingPage(booking.parkingLot.id,booking.id)}> Rate</Button>
                                     </Space>
                                 </div>
                             </div>    
