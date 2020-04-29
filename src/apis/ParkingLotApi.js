@@ -68,5 +68,10 @@ class ParkingLotApi {
     const PATCH_BY_IDS_URL = `${API_URL}/parking-lots/${parkingLotId}/bookings/${bookingId}`;
     return axios.patch(PATCH_BY_IDS_URL, { "status": "COMPLETED" });
   }
+
+  static updateBookingStatusToRated(parkingLotId,bookingId) {
+    const PATCH_BY_IDS_URL = `${API_URL}/parking-lots/${parkingLotId}/bookings/${bookingId}`;
+    return axios.patch(PATCH_BY_IDS_URL, { "status": "RATED" });
+  }
 }
 export default ParkingLotApi;

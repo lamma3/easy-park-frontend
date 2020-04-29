@@ -31,7 +31,7 @@ class RatingPage extends Component {
           isLoaded: true,
           list: apiData
       })
-  })
+    })
   }
 
   goBack() {
@@ -47,6 +47,8 @@ class RatingPage extends Component {
       }else {
         message.error(VOTING_ERROR_MESSAGE, 3);
       }
+    }).then(() => {
+      ParkingLotApi.updateBookingStatusToRated(parkingLotId, this.props.location.state.bookingId)
     })
     
   }
